@@ -9,7 +9,7 @@ import { packages, addOns } from "@/lib/data";
 export const metadata: Metadata = {
   title: "Ceník",
   description:
-    "Ceník kurzů autoškoly Royal Cars Liberec — skupina B, VIP balíčky, kondiční jízdy a doplňkové služby. Splátky bez navýšení.",
+    "Ceník kurzů autoškoly Royal Cars Liberec: skupina B, VIP balíčky, kondiční jízdy a doplňkové služby. Splátky bez navýšení.",
 };
 
 export default function PricingPage() {

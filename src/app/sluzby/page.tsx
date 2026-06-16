@@ -31,7 +31,7 @@ const services = [
   {
     icon: BadgeCheck,
     title: "Vrácení řidičského průkazu",
-    text: "Pomůžeme vám zpět do provozu — přezkoušení i kondiční jízdy v jednom balíčku.",
+    text: "Pomůžeme vám zpět do provozu, přezkoušení i kondiční jízdy v jednom balíčku.",
   },
   {
     icon: GraduationCap,
@@ -62,7 +62,7 @@ export default function ServicesPage() {
             dark
             eyebrow="Naše služby"
             title="Vše pro váš řidičák na jednom místě"
-            description="Od prvního sednutí za volant po vrácení řidičáku. Vyberte si službu, která vám sedne — o zbytek se postaráme my."
+            description="Od prvního sednutí za volant po vrácení řidičáku. Vyberte si službu, která vám sedne, o zbytek se postaráme my."
           />
         </div>
       </section>
@@ -96,7 +96,7 @@ export default function ServicesPage() {
             <SmartImage
               src="/images/bmw-x2-interior.jpg"
               alt="Červený interiér výcvikového BMW X2"
-              label="BMW X2 — interiér"
+              label="BMW X2 interiér"
               width={880}
               height={660}
               sizes="(min-width: 1024px) 50vw, 100vw"
@@ -159,7 +159,7 @@ export default function ServicesPage() {
             </h2>
           </Reveal>
           <Reveal delay={0.08} className="max-w-xl text-white/85">
-            Zavolejte nám nebo napište — poradíme vám s výběrem služby i termínem
+            Zavolejte nám nebo napište, poradíme vám s výběrem služby i termínem
             nástupu.
           </Reveal>
           <Reveal delay={0.16}>

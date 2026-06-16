@@ -117,7 +117,7 @@ export const testimonials: Testimonial[] = [
     quote:
       "Skvělý přístup od první jízdy. Lektor měl trpělivost a zkoušku jsem dala na první pokus. BMW X2 byla navíc paráda.",
     name: "Tereza K.",
-    detail: "Skupina B · Liberec",
+    detail: "Skupina B, Liberec",
   },
   {
     quote:

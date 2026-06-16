@@ -92,7 +92,7 @@ export function Footer() {
         </div>
 
         <div className="mt-14 border-t border-white/10 pt-6 text-xs text-white/40">
-          © 2025 {site.fullName} – {site.owner}
+          © 2025 {site.fullName}, {site.owner}
         </div>
       </div>
     </footer>

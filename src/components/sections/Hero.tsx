@@ -31,7 +31,7 @@ export function Hero() {
         <SmartImage
           src="/images/hero.jpg"
           alt="BMW X2 autoškoly Royal Cars v Liberci"
-          label="BMW X2 exteriér — hero"
+          label="BMW X2 exteriér"
           fill
           priority
           sizes="100vw"
@@ -59,7 +59,7 @@ export function Hero() {
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
           </span>
-          Autoškola v Liberci · {site.address.city.replace(/^\d+\s\d+\s/, "")}
+          Autoškola v Liberci
         </motion.span>
 
         <h1 className="max-w-4xl font-display text-5xl font-bold leading-[0.95] tracking-tight text-white sm:text-6xl lg:text-[5.25rem]">

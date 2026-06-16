@@ -17,7 +17,7 @@ export function Marquee({ items, className }: MarqueeProps) {
       }
       aria-hidden="true"
     >
-      <div className="flex shrink-0 animate-marquee items-center group-hover:[animation-play-state:paused] motion-reduce:animate-none">
+      <div className="flex shrink-0 animate-marquee items-center motion-reduce:animate-none">
         {[0, 1].map((dup) => (
           <Fragment key={dup}>
             {items.map((item, i) => (

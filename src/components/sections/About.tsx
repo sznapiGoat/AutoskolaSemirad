@@ -6,7 +6,7 @@ import { site } from "@/lib/site";
 
 const points = [
   "Roky praxe a tisíce odjetých hodin výcviku",
-  "Nadšenec do aut a motorsportu — řízení vás naučí s citem",
+  "Nadšenec do aut a motorsportu, řízení vás naučí s citem",
   "Individuální tempo a lidský přístup ke každému žákovi",
 ];
 
@@ -18,8 +18,8 @@ export function About() {
         <Reveal className="relative">
           <SmartImage
             src="/images/instructor.jpg"
-            alt={`${site.owner} — lektor autoškoly Royal Cars`}
-            label="Lektor — Josef Semirád"
+            alt={`${site.owner}, lektor autoškoly Royal Cars`}
+            label="Lektor Josef Semirád"
             width={760}
             height={620}
             sizes="(min-width: 1024px) 50vw, 100vw"
@@ -43,7 +43,7 @@ export function About() {
           <SectionHeading
             eyebrow="Kdo vás povede"
             title="Za volantem i za katedrou jeden člověk"
-            description={`${site.owner} vede autoškolu s důrazem na osobní přístup. Žádný anonymní řetězec — víte, s kým jezdíte, a tomu odpovídá i kvalita výuky.`}
+            description={`${site.owner} vede autoškolu s důrazem na osobní přístup. Žádný anonymní řetězec. Víte, s kým jezdíte, a tomu odpovídá i kvalita výuky.`}
           />
           <ul className="mt-8 space-y-3.5">
             {points.map((p) => (
@@ -62,7 +62,7 @@ export function About() {
             <div>
               <p className="font-display text-base font-bold text-ink">{site.owner}</p>
               <p className="text-sm text-ink-muted">
-                Zakladatel a lektor · {site.name}
+                Zakladatel a lektor autoškoly {site.name}
               </p>
             </div>
           </div>

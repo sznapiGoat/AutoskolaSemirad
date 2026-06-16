@@ -13,7 +13,7 @@ export const site = {
     city: "463 12 Liberec",
   },
   hours: {
-    weekdays: "7:00 – 19:00",
+    weekdays: "7:00–19:00",
     weekend: "po dohodě",
   },
   mapQuery: "Hodkovická 102, 463 12 Liberec",

@@ -8,7 +8,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Kontakt",
   description:
-    "Kontaktujte autoškolu Royal Cars Liberec — Mgr. Josef Semirád. Telefon, e-mail, adresa učebny a online poptávkový formulář.",
+    "Kontaktujte autoškolu Royal Cars Liberec, Mgr. Josef Semirád. Telefon, e-mail, adresa učebny a online poptávkový formulář.",
 };
 
 const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(site.mapQuery)}&output=embed`;
@@ -116,7 +116,7 @@ export default function ContactPage() {
         <div className="mx-auto max-w-container py-16 container-px">
           <Reveal className="overflow-hidden rounded-2xl border border-line shadow-card">
             <iframe
-              title="Mapa — sídlo autoškoly Royal Cars"
+              title="Mapa sídla autoškoly Royal Cars"
               src={mapSrc}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"

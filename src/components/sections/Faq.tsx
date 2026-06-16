@@ -19,7 +19,7 @@ export function Faq({ tone = "muted" }: { tone?: "muted" | "white" }) {
           <SectionHeading
             eyebrow="Časté dotazy"
             title="Na co se nejčastěji ptáte"
-            description="Nenašli jste odpověď? Zavolejte nám — rádi poradíme."
+            description="Nenašli jste odpověď? Zavolejte nám, rádi poradíme."
           />
           <Reveal delay={0.1} className="mt-8 hidden lg:block">
             <ButtonLink href="/kontakt" variant="outline">

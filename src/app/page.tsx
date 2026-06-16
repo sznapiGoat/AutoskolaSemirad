@@ -59,7 +59,7 @@ export default function Home() {
           <SectionHeading
             eyebrow="Proč Royal Cars"
             title="Autoškola, která hraje jinou ligu"
-            description="Spojujeme moderní vůz, zkušené lektory a férové podmínky. Cílem je, abyste řídili s jistotou — ne jen prošli zkouškou."
+            description="Spojujeme moderní vůz, zkušené lektory a férové podmínky. Cílem je, abyste řídili s jistotou, ne jen prošli zkouškou."
           />
           <StaggerGroup className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {features.map((f) => (
@@ -91,17 +91,17 @@ export default function Home() {
             <SmartImage
               src="/images/bmw-x2.jpg"
               alt="BMW X2 autoškoly Royal Cars"
-              label="BMW X2 — exteriér"
+              label="BMW X2 exteriér"
               width={880}
               height={620}
               sizes="(min-width: 1024px) 50vw, 100vw"
-              className="aspect-[7/5] w-full rounded-2xl object-cover"
+              className="aspect-[7/5] w-full -scale-x-100 rounded-2xl object-cover"
             />
             <div className="absolute -bottom-6 -right-4 hidden w-44 overflow-hidden rounded-xl border-4 border-dark shadow-glow sm:block lg:w-56">
               <SmartImage
                 src="/images/bmw-x2-interior.jpg"
                 alt="Červený interiér BMW X2"
-                label="BMW X2 — interiér"
+                label="BMW X2 interiér"
                 width={448}
                 height={336}
                 sizes="224px"
