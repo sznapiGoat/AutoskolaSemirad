@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Check, Gauge, ShieldCheck, Sparkles, Users } from "lucide-react";
 import { Hero } from "@/components/sections/Hero";
 import { Stats } from "@/components/sections/Stats";
+import { About } from "@/components/sections/About";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { Faq } from "@/components/sections/Faq";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -80,6 +81,8 @@ export default function Home() {
           </StaggerGroup>
         </div>
       </section>
+
+      <About />
 
       {/* Vehicle showcase */}
       <section className="bg-dark text-white">

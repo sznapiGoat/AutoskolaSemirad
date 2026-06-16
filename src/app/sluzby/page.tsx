@@ -94,13 +94,13 @@ export default function ServicesPage() {
         <div className="mx-auto grid max-w-container items-center gap-12 py-20 container-px sm:py-24 lg:grid-cols-2">
           <Reveal>
             <SmartImage
-              src="/images/bmw-x2-interior.jpg"
-              alt="Interiér výcvikového BMW X2"
-              label="BMW X2 — interiér"
+              src="/images/bmw-x2.jpg"
+              alt="Výcvikové BMW X2 autoškoly Royal Cars"
+              label="BMW X2 — výcvikový vůz"
               width={880}
               height={620}
               sizes="(min-width: 1024px) 50vw, 100vw"
-              className="w-full rounded-2xl object-cover"
+              className="aspect-[7/5] w-full rounded-2xl object-cover"
             />
           </Reveal>
           <div>
