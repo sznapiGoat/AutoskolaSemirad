@@ -87,16 +87,27 @@ export default function Home() {
       {/* Vehicle showcase */}
       <section className="bg-dark text-white">
         <div className="mx-auto grid max-w-container items-center gap-12 py-20 container-px sm:py-28 lg:grid-cols-2">
-          <Reveal>
+          <Reveal className="relative">
             <SmartImage
               src="/images/bmw-x2.jpg"
               alt="BMW X2 autoškoly Royal Cars"
-              label="BMW X2 — detail vozu"
+              label="BMW X2 — exteriér"
               width={880}
               height={620}
               sizes="(min-width: 1024px) 50vw, 100vw"
-              className="w-full rounded-2xl object-cover"
+              className="aspect-[7/5] w-full rounded-2xl object-cover"
             />
+            <div className="absolute -bottom-6 -right-4 hidden w-44 overflow-hidden rounded-xl border-4 border-dark shadow-glow sm:block lg:w-56">
+              <SmartImage
+                src="/images/bmw-x2-interior.jpg"
+                alt="Červený interiér BMW X2"
+                label="BMW X2 — interiér"
+                width={448}
+                height={336}
+                sizes="224px"
+                className="aspect-[4/3] w-full object-cover"
+              />
+            </div>
           </Reveal>
           <div>
             <SectionHeading
