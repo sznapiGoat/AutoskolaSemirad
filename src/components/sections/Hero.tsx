@@ -49,19 +49,6 @@ export function Hero() {
       </div>
 
       <div className="relative mx-auto w-full max-w-container pb-20 pt-32 container-px">
-        <motion.span
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: easeOut }}
-          className="mb-7 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-white/80 backdrop-blur"
-        >
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
-          </span>
-          Autoškola v Liberci
-        </motion.span>
-
         <h1 className="max-w-4xl font-display text-5xl font-bold leading-[0.95] tracking-tight text-white sm:text-6xl lg:text-[5.25rem]">
           <motion.span custom={0} variants={lineVariants} initial="hidden" animate="show" className="block">
             Jiná liga.

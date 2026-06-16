@@ -4,7 +4,66 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ButtonLink } from "@/components/ui/Button";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/ui/Reveal";
 import { Faq } from "@/components/sections/Faq";
-import { packages, addOns } from "@/lib/data";
+import { packages, addOns, packageGroups, type Package } from "@/lib/data";
+
+function PackageCard({ pkg }: { pkg: Package }) {
+  return (
+    <StaggerItem
+      className={
+        "relative flex flex-col rounded-2xl border p-8 shadow-card transition-all duration-300 hover:-translate-y-1 " +
+        (pkg.highlight
+          ? "border-accent bg-dark text-white"
+          : "border-line bg-white text-ink hover:shadow-card-hover")
+      }
+    >
+      {pkg.badge && (
+        <span
+          className={
+            "absolute -top-3 left-8 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-wider " +
+            (pkg.highlight ? "bg-accent text-white" : "bg-ink text-white")
+          }
+        >
+          {pkg.badge}
+        </span>
+      )}
+      <h3 className="font-display text-xl font-bold">{pkg.name}</h3>
+      <p
+        className={
+          "mt-2 text-sm leading-relaxed " +
+          (pkg.highlight ? "text-white/60" : "text-ink-muted")
+        }
+      >
+        {pkg.description}
+      </p>
+      <div className="mt-6 flex items-baseline gap-1">
+        <span className="font-display text-4xl font-bold">{pkg.price}</span>
+        <span className={pkg.highlight ? "text-white/50" : "text-ink-muted"}>Kč</span>
+      </div>
+      <ul className="mt-6 flex-1 space-y-3">
+        {pkg.features.map((feat) => (
+          <li key={feat} className="flex items-start gap-3 text-sm">
+            <Check
+              className={
+                "mt-0.5 h-4 w-4 shrink-0 " +
+                (pkg.highlight ? "text-accent-light" : "text-accent")
+              }
+            />
+            <span className={pkg.highlight ? "text-white/80" : "text-ink"}>{feat}</span>
+          </li>
+        ))}
+      </ul>
+      <div className="mt-8">
+        <ButtonLink
+          href="/kontakt"
+          variant={pkg.highlight ? "ghostDark" : "outline"}
+          className="w-full"
+        >
+          Mám zájem
+        </ButtonLink>
+      </div>
+    </StaggerItem>
+  );
+}
 
 export const metadata: Metadata = {
   title: "Ceník",
@@ -27,70 +86,28 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* Packages */}
+      {/* Packages by group */}
       <section className="bg-bg">
-        <div className="mx-auto max-w-container py-20 container-px sm:py-24">
-          <StaggerGroup className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {packages.map((pkg) => (
-              <StaggerItem
-                key={pkg.name}
-                className={
-                  "relative flex flex-col rounded-2xl border p-8 shadow-card transition-all duration-300 hover:-translate-y-1 " +
-                  (pkg.highlight
-                    ? "border-accent bg-dark text-white"
-                    : "border-line bg-white text-ink hover:shadow-card-hover")
-                }
-              >
-                {pkg.badge && (
-                  <span
-                    className={
-                      "absolute -top-3 left-8 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-wider " +
-                      (pkg.highlight ? "bg-accent text-white" : "bg-ink text-white")
-                    }
-                  >
-                    {pkg.badge}
-                  </span>
-                )}
-                <h3 className="font-display text-xl font-bold">{pkg.name}</h3>
-                <p
-                  className={
-                    "mt-2 text-sm leading-relaxed " +
-                    (pkg.highlight ? "text-white/60" : "text-ink-muted")
-                  }
-                >
-                  {pkg.description}
-                </p>
-                <div className="mt-6 flex items-baseline gap-1">
-                  <span className="font-display text-4xl font-bold">{pkg.price}</span>
-                  <span className={pkg.highlight ? "text-white/50" : "text-ink-muted"}>Kč</span>
-                </div>
-                <ul className="mt-6 flex-1 space-y-3">
-                  {pkg.features.map((feat) => (
-                    <li key={feat} className="flex items-start gap-3 text-sm">
-                      <Check
-                        className={
-                          "mt-0.5 h-4 w-4 shrink-0 " +
-                          (pkg.highlight ? "text-accent-light" : "text-accent")
-                        }
-                      />
-                      <span className={pkg.highlight ? "text-white/80" : "text-ink"}>
-                        {feat}
-                      </span>
-                    </li>
+        <div className="mx-auto max-w-container space-y-16 py-20 container-px sm:py-24">
+          {packageGroups.map((group) => {
+            const items = packages.filter((p) => p.group === group.id);
+            if (items.length === 0) return null;
+            return (
+              <div key={group.id}>
+                <Reveal className="mb-10 flex flex-wrap items-baseline gap-x-4 gap-y-1 border-b border-line pb-5">
+                  <h2 className="font-display text-2xl font-bold tracking-tight text-ink sm:text-3xl">
+                    {group.title}
+                  </h2>
+                  <p className="text-sm text-ink-muted">{group.subtitle}</p>
+                </Reveal>
+                <StaggerGroup className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                  {items.map((pkg) => (
+                    <PackageCard key={pkg.name} pkg={pkg} />
                   ))}
-                </ul>
-                <div className="mt-8">
-                  <ButtonLink
-                    href="/kontakt"
-                    variant={pkg.highlight ? "ghostDark" : "outline"}
-                    className="w-full"
-                  >
-                    Mám zájem
-                  </ButtonLink>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerGroup>
+                </StaggerGroup>
+              </div>
+            );
+          })}
         </div>
       </section>
 

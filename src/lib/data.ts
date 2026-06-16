@@ -1,6 +1,18 @@
+export type PackageGroup = { id: "B" | "D"; title: string; subtitle: string };
+
+export const packageGroups: PackageGroup[] = [
+  { id: "B", title: "Skupina B", subtitle: "Osobní automobil, výcvik v BMW X2" },
+  {
+    id: "D",
+    title: "Skupina C, C+E a D",
+    subtitle: "Autobus MAN A20, akreditované školicí středisko",
+  },
+];
+
 export type Package = {
   name: string;
   price: string;
+  group: PackageGroup["id"];
   badge?: string;
   highlight?: boolean;
   description: string;
@@ -11,61 +23,103 @@ export const packages: Package[] = [
   {
     name: "Základní sk. B",
     price: "17 999",
-    description: "Minimální počet hodin, vhodný pro pokročilejší žáky.",
+    group: "B",
+    description: "Běžný standard autoškoly. Vhodný pro pokročilejší žáky i pro přezkoušení.",
     features: [
-      "Kompletní výuka a výcvik sk. B",
       "Minimální zákonný počet jízd",
-      "Možnost splátek bez navýšení",
-      "Závěrečná zkouška v ceně",
+      "Vhodný pro pokročilejší žáky",
+      "Možnost přezkoušení",
+      "Splátky bez navýšení",
     ],
   },
   {
     name: "Standardní sk. B",
     price: "20 999",
+    group: "B",
     badge: "Nejoblíbenější",
-    description: "Start z centra Liberce z Barvířské ulice, klasický komfort.",
+    description: "Začátek výuky i jízd z centra města, z Barvířské ulice.",
     features: [
-      "30 hodin praktických jízd",
-      "Start z centra Liberce (Barvířská)",
-      "Video záznam z každé jízdy",
-      "Možnost splátek bez navýšení",
+      "Začátek jízd i teorie z centra města",
+      "Nástup z Barvířské ulice (100 m od Fügnerova)",
+      "Kompletní výuka a výcvik",
+      "Splátky bez navýšení",
     ],
   },
   {
     name: "VIP sk. B",
     price: "24 999",
+    group: "B",
     badge: "Doporučujeme",
-    highlight: true,
     description: "Přednostní plánování a rychlejší průběh celého kurzu.",
     features: [
-      "Přednostní plánování jízd",
-      "Rychlejší dokončení kurzu",
-      "30 hodin praktických jízd",
-      "Možnost splátek bez navýšení",
+      "Přednostní plánování výuky a výcviku",
+      "Rychlejší průběh kurzu",
+      "Plánování podle časových možností žáka",
+      "Splátky bez navýšení",
+    ],
+  },
+  {
+    name: "VIP Royal Cars sk. B",
+    price: "28 999",
+    group: "B",
+    badge: "34 hodin jízd",
+    highlight: true,
+    description: "Rozšířený kurz s jízdami na delší vzdálenost po dálnici.",
+    features: [
+      "34 hodin praktických jízd",
+      "Jízdy na delší vzdálenost po dálnici",
+      "Nácvik parkování všemi způsoby i asistentů",
+      "Přednostní plánování",
     ],
   },
   {
     name: "VIP Royal Full Service",
     price: "29 999",
+    group: "B",
     badge: "Vše v ceně",
-    description: "Maximální pohodlí, odvoz z domu a zpět i občerstvení.",
+    description: "Maximální pohodlí, odvoz z domu na učebnu a zpět i občerstvení.",
     features: [
       "Odvoz z domu na učebnu a zpět",
-      "Občerstvení na učebně",
-      "Přednostní plánování jízd",
-      "Video záznam z každé jízdy",
+      "Drobné občerstvení na učebně",
+      "Přednostní plánování výuky a výcviku",
+      "Vše v rozsahu VIP kurzu",
     ],
   },
   {
     name: "VIP Individual",
     price: "36 999",
+    group: "B",
     badge: "Maximální komfort",
     description: "Jen lektor a vy. Nejrychlejší cesta k řidičskému průkazu.",
     features: [
       "Pouze lektor a vy, žádná skupina",
-      "34 hodin praktických jízd",
-      "Plánování 100 % dle žáka",
+      "Plánování 100 % podle vás",
       "Nejrychlejší možný průběh",
+      "Přednostní plánování",
+    ],
+  },
+  {
+    name: "Standardní kurz sk. D",
+    price: "39 500",
+    group: "D",
+    description: "Výcvik na autobus MAN A20 automat v akreditovaném středisku.",
+    features: [
+      "Autobus MAN A20 automat",
+      "Kompletní výcvik a výuka",
+      "Akreditované školicí středisko",
+      "Závěrečná zkouška v ceně",
+    ],
+  },
+  {
+    name: "Kurz sk. D ze skupiny B",
+    price: "49 900",
+    group: "D",
+    description: "Rozšíření na autobus pro stávající držitele skupiny B.",
+    features: [
+      "Pro držitele skupiny B",
+      "Autobus MAN A20 automat",
+      "Rozšíření na skupinu D",
+      "Závěrečná zkouška v ceně",
     ],
   },
 ];
@@ -82,8 +136,6 @@ export const addOns: AddOn[] = [
   { label: "Zrušení jízdy v den termínu", price: "400 Kč" },
   { label: "Školení začínajících řidičů", price: "4 500 Kč" },
   { label: "Vrácení ŘP a 90 min kondiční jízdy", price: "4 000 Kč" },
-  { label: "Kurz sk. D", price: "39 500 Kč" },
-  { label: "Kurz sk. D ze sk. B", price: "49 900 Kč" },
 ];
 
 export const vehicleSpecs: string[] = [

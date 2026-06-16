@@ -45,7 +45,7 @@ const features = [
   },
 ];
 
-const featured = packages.filter((p) => p.highlight || p.badge === "Nejoblíbenější").slice(0, 3);
+const featured = packages.filter((p) => p.group === "B").slice(1, 4);
 
 export default function Home() {
   return (
@@ -87,7 +87,7 @@ export default function Home() {
       {/* Vehicle showcase */}
       <section className="bg-dark text-white">
         <div className="mx-auto grid max-w-container items-center gap-12 py-20 container-px sm:py-28 lg:grid-cols-2">
-          <Reveal>
+          <Reveal className="space-y-4">
             <SmartImage
               src="/images/bmw-x2.jpg"
               alt="BMW X2 autoškoly Royal Cars"
@@ -96,6 +96,15 @@ export default function Home() {
               height={620}
               sizes="(min-width: 1024px) 50vw, 100vw"
               className="aspect-[7/5] w-full -scale-x-100 rounded-2xl object-cover"
+            />
+            <SmartImage
+              src="/images/bmw-x2-interior.jpg"
+              alt="Červený interiér BMW X2"
+              label="BMW X2 interiér"
+              width={880}
+              height={420}
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="aspect-[16/7] w-full rounded-2xl object-cover"
             />
           </Reveal>
           <div>
