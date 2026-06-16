@@ -1,101 +1,214 @@
-import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, Check, Gauge, ShieldCheck, Sparkles, Users } from "lucide-react";
+import { Hero } from "@/components/sections/Hero";
+import { Stats } from "@/components/sections/Stats";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { ButtonLink } from "@/components/ui/Button";
+import { Reveal, StaggerGroup, StaggerItem } from "@/components/ui/Reveal";
+import { SmartImage } from "@/components/ui/SmartImage";
+import { packages, vehicleSpecs } from "@/lib/data";
+
+const features = [
+  {
+    icon: Users,
+    title: "Individuální přístup",
+    text: "Žádné přeplněné skupiny. Jeden lektor, jeden žák a tempo přizpůsobené vám.",
+  },
+  {
+    icon: Gauge,
+    title: "Výcvik v BMW X2",
+    text: "Trénujete v moderním voze s asistenčními systémy a možností video záznamu.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Vysoká úspěšnost",
+    text: "Důsledná příprava na zkoušky z provozu i testů. Jdete na zkoušku připraveni.",
+  },
+  {
+    icon: Sparkles,
+    title: "Komfort navíc",
+    text: "Splátky bez navýšení, přednostní plánování i odvoz z domu u VIP balíčků.",
+  },
+];
+
+const featured = packages.filter((p) => p.highlight || p.badge === "Nejoblíbenější").slice(0, 3);
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <>
+      <Hero />
+      <Stats />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Why us */}
+      <section className="bg-bg">
+        <div className="mx-auto max-w-container py-20 container-px sm:py-28">
+          <SectionHeading
+            eyebrow="Proč Royal Cars"
+            title="Autoškola, která hraje jinou ligu"
+            description="Spojujeme moderní vůz, zkušené lektory a férové podmínky. Cílem je, abyste řídili s jistotou — ne jen prošli zkouškou."
+          />
+          <StaggerGroup className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {features.map((f) => (
+              <StaggerItem
+                key={f.title}
+                className="group rounded-2xl border border-line bg-white p-7 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover"
+              >
+                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent transition-colors group-hover:bg-accent group-hover:text-white">
+                  <f.icon className="h-6 w-6" />
+                </span>
+                <h3 className="mt-5 font-display text-lg font-semibold text-ink">
+                  {f.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink-muted">
+                  {f.text}
+                </p>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+      </section>
+
+      {/* Vehicle showcase */}
+      <section className="bg-dark text-white">
+        <div className="mx-auto grid max-w-container items-center gap-12 py-20 container-px sm:py-28 lg:grid-cols-2">
+          <Reveal>
+            <SmartImage
+              src="/images/bmw-x2.jpg"
+              alt="BMW X2 autoškoly Royal Cars"
+              label="BMW X2 — detail vozu"
+              width={880}
+              height={620}
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="w-full rounded-2xl object-cover"
+            />
+          </Reveal>
+          <div>
+            <SectionHeading
+              dark
+              eyebrow="Náš vůz"
+              title="Učte se v BMW X2"
+              description="Výcvikový vůz, který vás bude bavit. Výkon, asistenční systémy a komfort, na který se spolehnete od první jízdy."
+            />
+            <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+              {vehicleSpecs.map((spec) => (
+                <li key={spec} className="flex items-start gap-3 text-sm text-white/75">
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent-light" />
+                  {spec}
+                </li>
+              ))}
+            </ul>
+            <div className="mt-9">
+              <ButtonLink href="/sluzby" variant="ghostDark">
+                Více o výcviku
+                <ArrowRight className="h-4 w-4" />
+              </ButtonLink>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Packages preview */}
+      <section className="bg-bg-muted">
+        <div className="mx-auto max-w-container py-20 container-px sm:py-28">
+          <SectionHeading
+            align="center"
+            eyebrow="Ceník"
+            title="Vyberte si svůj balíček"
+            description="Od základního kurzu po plný VIP servis. Všechny balíčky lze rozložit do splátek bez navýšení."
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+          <StaggerGroup className="mt-14 grid gap-6 lg:grid-cols-3">
+            {featured.map((pkg) => (
+              <StaggerItem
+                key={pkg.name}
+                className={
+                  "relative flex flex-col rounded-2xl border p-8 shadow-card transition-all duration-300 hover:-translate-y-1 " +
+                  (pkg.highlight
+                    ? "border-accent bg-dark text-white"
+                    : "border-line bg-white text-ink hover:shadow-card-hover")
+                }
+              >
+                {pkg.badge && (
+                  <span
+                    className={
+                      "absolute -top-3 left-8 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-wider " +
+                      (pkg.highlight ? "bg-accent text-white" : "bg-ink text-white")
+                    }
+                  >
+                    {pkg.badge}
+                  </span>
+                )}
+                <h3 className="font-display text-xl font-bold">{pkg.name}</h3>
+                <p
+                  className={
+                    "mt-2 text-sm leading-relaxed " +
+                    (pkg.highlight ? "text-white/60" : "text-ink-muted")
+                  }
+                >
+                  {pkg.description}
+                </p>
+                <div className="mt-6 flex items-baseline gap-1">
+                  <span className="font-display text-4xl font-bold">{pkg.price}</span>
+                  <span className={pkg.highlight ? "text-white/50" : "text-ink-muted"}>Kč</span>
+                </div>
+                <ul className="mt-6 flex-1 space-y-3">
+                  {pkg.features.map((feat) => (
+                    <li key={feat} className="flex items-start gap-3 text-sm">
+                      <Check
+                        className={
+                          "mt-0.5 h-4 w-4 shrink-0 " +
+                          (pkg.highlight ? "text-accent-light" : "text-accent")
+                        }
+                      />
+                      <span className={pkg.highlight ? "text-white/80" : "text-ink"}>
+                        {feat}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-8">
+                  <ButtonLink
+                    href="/kontakt"
+                    variant={pkg.highlight ? "ghostDark" : "outline"}
+                    className="w-full"
+                  >
+                    Mám zájem
+                  </ButtonLink>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
+          <Reveal className="mx-auto mt-10 text-center">
+            <Link
+              href="/cenik"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-accent hover:text-accent-light"
+            >
+              Zobrazit všechny balíčky a doplňky
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* CTA band */}
+      <section className="bg-accent">
+        <div className="mx-auto flex max-w-container flex-col items-center gap-6 py-16 text-center container-px sm:py-20">
+          <Reveal>
+            <h2 className="font-display text-3xl font-bold tracking-tight text-white text-balance sm:text-4xl">
+              Začněte s řidičákem ještě dnes
+            </h2>
+          </Reveal>
+          <Reveal delay={0.08} className="max-w-xl text-white/85">
+            Ozvěte se nám a domluvíme termín nástupu, který vám sedne. Bez front a
+            zbytečného čekání.
+          </Reveal>
+          <Reveal delay={0.16}>
+            <ButtonLink href="/kontakt" variant="ghostDark">
+              Chci řidičák
+              <ArrowRight className="h-4 w-4" />
+            </ButtonLink>
+          </Reveal>
+        </div>
+      </section>
+    </>
   );
 }
