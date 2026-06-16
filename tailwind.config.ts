@@ -10,9 +10,9 @@ const config: Config = {
     extend: {
       colors: {
         accent: {
-          DEFAULT: "#C0000A",
-          light: "#E8000D",
-          muted: "#7A0006",
+          DEFAULT: "#D6000F",
+          light: "#FF2A38",
+          muted: "#9E000B",
         },
         bg: {
           DEFAULT: "#FFFFFF",
@@ -37,8 +37,8 @@ const config: Config = {
       },
       boxShadow: {
         card: "0 1px 2px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06)",
-        "card-hover": "0 24px 48px rgba(192,0,10,0.15)",
-        glow: "0 0 80px rgba(192,0,10,0.25)",
+        "card-hover": "0 24px 48px rgba(214,0,15,0.15)",
+        glow: "0 0 80px rgba(214,0,15,0.25)",
       },
       keyframes: {
         "fade-up": {

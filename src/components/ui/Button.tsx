@@ -9,7 +9,7 @@ const base =
 
 const variants: Record<Variant, string> = {
   solid:
-    "bg-accent text-white shadow-[0_8px_24px_rgba(192,0,10,0.25)] hover:bg-accent-light hover:-translate-y-0.5",
+    "bg-accent text-white shadow-[0_8px_24px_rgba(214,0,15,0.25)] hover:bg-accent-light hover:-translate-y-0.5",
   outline:
     "border border-ink/20 text-ink hover:border-accent hover:text-accent",
   outlineDark:

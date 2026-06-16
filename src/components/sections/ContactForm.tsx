@@ -139,7 +139,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent px-7 py-3.5 text-sm font-semibold tracking-wide text-white shadow-[0_8px_24px_rgba(192,0,10,0.25)] transition-all duration-200 hover:bg-accent-light hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+        className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent px-7 py-3.5 text-sm font-semibold tracking-wide text-white shadow-[0_8px_24px_rgba(214,0,15,0.25)] transition-all duration-200 hover:bg-accent-light hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
       >
         {isSubmitting ? "Odesílám…" : "Odeslat poptávku"}
         <Send className="h-4 w-4" />

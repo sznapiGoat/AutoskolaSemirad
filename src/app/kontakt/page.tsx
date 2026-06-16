@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Phone, Mail, MapPin, Clock, Building2 } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
+import { SmartImage } from "@/components/ui/SmartImage";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { site } from "@/lib/site";
 
@@ -33,11 +34,33 @@ export default function ContactPage() {
         <div className="mx-auto grid max-w-container gap-12 py-20 container-px sm:py-24 lg:grid-cols-[1fr_1.2fr]">
           {/* Info */}
           <Reveal className="space-y-8">
+            <div className="relative overflow-hidden rounded-2xl shadow-card">
+              <SmartImage
+                src="/images/instructor-driving.jpg"
+                alt={`${site.owner} za volantem`}
+                label="Lektor za volantem"
+                width={900}
+                height={600}
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                className="aspect-[3/2] w-full object-cover"
+              />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-5 pt-12">
+                <p className="font-display text-lg font-bold text-white">
+                  {site.owner}
+                </p>
+                <p className="text-sm text-white/70">
+                  Zakladatel a lektor autoškoly {site.name}
+                </p>
+              </div>
+            </div>
+
             <div>
               <h3 className="font-display text-xl font-bold text-ink">
                 {site.fullName}
               </h3>
-              <p className="mt-1 text-sm text-ink-muted">{site.owner}</p>
+              <p className="mt-1 text-sm text-ink-muted">
+                Těšíme se na vás v naší učebně v Liberci.
+              </p>
             </div>
 
             <ul className="space-y-5 text-sm">
