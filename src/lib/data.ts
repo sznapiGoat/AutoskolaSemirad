@@ -105,3 +105,65 @@ export const serviceOptions = [
   "Kurz sk. D",
   "Jiné",
 ];
+
+export type Testimonial = {
+  quote: string;
+  name: string;
+  detail: string;
+};
+
+export const testimonials: Testimonial[] = [
+  {
+    quote:
+      "Skvělý přístup od první jízdy. Lektor měl trpělivost a zkoušku jsem dala na první pokus. BMW X2 byla navíc paráda.",
+    name: "Tereza K.",
+    detail: "Skupina B · Liberec",
+  },
+  {
+    quote:
+      "Vybral jsem si rychlokurz a opravdu to bylo rychlé. Plánování jízd dle mě, žádné čekání týdny na termín.",
+    name: "Martin V.",
+    detail: "Rychlokurz sk. B",
+  },
+  {
+    quote:
+      "Po letech bez řízení jsem potřebovala obnovit jistotu. Kondiční jízdy mi vrátily klid za volantem.",
+    name: "Jana P.",
+    detail: "Kondiční jízdy",
+  },
+  {
+    quote:
+      "Profesionální jednání, férové ceny a možnost splátek. Doporučuji každému, kdo to s řidičákem myslí vážně.",
+    name: "Ondřej S.",
+    detail: "VIP balíček sk. B",
+  },
+];
+
+export type Faq = { q: string; a: string };
+
+export const faqs: Faq[] = [
+  {
+    q: "Jak rychle můžu začít?",
+    a: "Nástup je možný prakticky ihned. Ozvěte se nám telefonicky nebo přes formulář a domluvíme termín, který vám sedne.",
+  },
+  {
+    q: "Dají se kurzy platit na splátky?",
+    a: "Ano. Všechny balíčky lze rozložit do splátek bez navýšení. Konkrétní podmínky s vámi rádi projdeme předem.",
+  },
+  {
+    q: "V jakém autě budu jezdit?",
+    a: "Praktický výcvik probíhá v moderním BMW X2 s asistenčními systémy a možností video záznamu z každé jízdy.",
+  },
+  {
+    q: "Co když u zkoušky neuspěji?",
+    a: "Nic se neděje. Domluvíme opravný termín a v případě potřeby doplníme kondiční jízdy, abyste šli na zkoušku připravení.",
+  },
+  {
+    q: "Kolik praktických jízd je v ceně?",
+    a: "Standardní a VIP balíčky zahrnují 30 hodin praktických jízd, VIP Individual až 34 hodin. Základní balíček obsahuje minimální zákonný počet.",
+  },
+  {
+    q: "Vyzvednete mě i z domu?",
+    a: "U balíčku VIP Royal Full Service zajišťujeme odvoz z domu na učebnu a zpět včetně občerstvení na učebně.",
+  },
+];

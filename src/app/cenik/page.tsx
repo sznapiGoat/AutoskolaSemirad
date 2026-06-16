@@ -3,6 +3,7 @@ import { ArrowRight, Check } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ButtonLink } from "@/components/ui/Button";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/ui/Reveal";
+import { Faq } from "@/components/sections/Faq";
 import { packages, addOns } from "@/lib/data";
 
 export const metadata: Metadata = {
@@ -123,9 +124,14 @@ export default function PricingPage() {
         </div>
       </section>
 
+      <Faq tone="white" />
+
       {/* CTA */}
-      <section className="bg-accent">
-        <div className="mx-auto flex max-w-container flex-col items-center gap-6 py-16 text-center container-px sm:py-20">
+      <section className="relative overflow-hidden bg-accent">
+        <div className="grid-texture absolute inset-0 opacity-40" />
+        <div className="absolute -left-20 -top-24 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
+        <div className="absolute -bottom-28 -right-16 h-80 w-80 rounded-full bg-accent-muted/40 blur-3xl" />
+        <div className="relative mx-auto flex max-w-container flex-col items-center gap-6 py-16 text-center container-px sm:py-20">
           <Reveal>
             <h2 className="font-display text-3xl font-bold tracking-tight text-white text-balance sm:text-4xl">
               Vybrali jste si?

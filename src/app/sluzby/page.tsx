@@ -148,8 +148,11 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-accent">
-        <div className="mx-auto flex max-w-container flex-col items-center gap-6 py-16 text-center container-px sm:py-20">
+      <section className="relative overflow-hidden bg-accent">
+        <div className="grid-texture absolute inset-0 opacity-40" />
+        <div className="absolute -left-20 -top-24 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
+        <div className="absolute -bottom-28 -right-16 h-80 w-80 rounded-full bg-accent-muted/40 blur-3xl" />
+        <div className="relative mx-auto flex max-w-container flex-col items-center gap-6 py-16 text-center container-px sm:py-20">
           <Reveal>
             <h2 className="font-display text-3xl font-bold tracking-tight text-white text-balance sm:text-4xl">
               Nevíte, co si vybrat?

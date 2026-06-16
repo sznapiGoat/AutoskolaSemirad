@@ -2,11 +2,24 @@ import Link from "next/link";
 import { ArrowRight, Check, Gauge, ShieldCheck, Sparkles, Users } from "lucide-react";
 import { Hero } from "@/components/sections/Hero";
 import { Stats } from "@/components/sections/Stats";
+import { Testimonials } from "@/components/sections/Testimonials";
+import { Faq } from "@/components/sections/Faq";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ButtonLink } from "@/components/ui/Button";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/ui/Reveal";
 import { SmartImage } from "@/components/ui/SmartImage";
+import { Marquee } from "@/components/ui/Marquee";
 import { packages, vehicleSpecs } from "@/lib/data";
+
+const marqueeItems = [
+  "Výcvik v BMW X2",
+  "Individuální přístup",
+  "Splátky bez navýšení",
+  "Vysoká úspěšnost",
+  "Video záznam z jízd",
+  "Přednostní plánování",
+  "Liberec a okolí",
+];
 
 const features = [
   {
@@ -107,6 +120,11 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Brand marquee */}
+      <section className="bg-accent py-6">
+        <Marquee items={marqueeItems} />
+      </section>
+
       {/* Packages preview */}
       <section className="bg-bg-muted">
         <div className="mx-auto max-w-container py-20 container-px sm:py-28">
@@ -189,9 +207,16 @@ export default function Home() {
         </div>
       </section>
 
+      <Testimonials />
+
+      <Faq />
+
       {/* CTA band */}
-      <section className="bg-accent">
-        <div className="mx-auto flex max-w-container flex-col items-center gap-6 py-16 text-center container-px sm:py-20">
+      <section className="relative overflow-hidden bg-accent">
+        <div className="grid-texture absolute inset-0 opacity-40" />
+        <div className="absolute -left-20 -top-24 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
+        <div className="absolute -bottom-28 -right-16 h-80 w-80 rounded-full bg-accent-muted/40 blur-3xl" />
+        <div className="relative mx-auto flex max-w-container flex-col items-center gap-6 py-16 text-center container-px sm:py-20">
           <Reveal>
             <h2 className="font-display text-3xl font-bold tracking-tight text-white text-balance sm:text-4xl">
               Začněte s řidičákem ještě dnes
