@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, Snowflake, GraduationCap } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ButtonLink } from "@/components/ui/Button";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/ui/Reveal";
 import { Faq } from "@/components/sections/Faq";
-import { packages, addOns, packageGroups, type Package } from "@/lib/data";
+import {
+  packages,
+  addOns,
+  packageGroups,
+  skidSchool,
+  instructorTraining,
+  type Package,
+} from "@/lib/data";
 
 function PackageCard({ pkg }: { pkg: Package }) {
   return (
@@ -108,6 +115,80 @@ export default function PricingPage() {
               </div>
             );
           })}
+        </div>
+      </section>
+
+      {/* Further courses & training */}
+      <section className="bg-dark text-white">
+        <div className="mx-auto max-w-container py-20 container-px sm:py-24">
+          <SectionHeading
+            dark
+            eyebrow="Další kurzy a školení"
+            title="Nejen řidičák pro skupinu B"
+            description="Zdokonalovací jízdy i příprava na profesi učitele autoškoly."
+          />
+          <div className="mt-12 grid gap-6 lg:grid-cols-2">
+            {/* Skid school */}
+            <Reveal className="flex flex-col rounded-2xl border border-white/10 bg-dark-card p-8">
+              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent/15 text-accent-light">
+                <Snowflake className="h-6 w-6" />
+              </span>
+              <h3 className="mt-5 font-display text-xl font-bold">{skidSchool.title}</h3>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-white/60">
+                {skidSchool.description}
+              </p>
+              <ul className="mt-6 space-y-3">
+                {skidSchool.options.map((opt) => (
+                  <li
+                    key={opt.label}
+                    className="flex items-center justify-between rounded-xl border border-white/10 bg-white/5 px-4 py-3"
+                  >
+                    <span className="text-sm text-white/80">{opt.label}</span>
+                    <span className="font-display text-base font-bold text-accent-light">
+                      {opt.price}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-7">
+                <ButtonLink href="/kontakt" variant="ghostDark" className="w-full">
+                  Mám zájem
+                </ButtonLink>
+              </div>
+            </Reveal>
+
+            {/* Instructor training */}
+            <Reveal
+              delay={0.1}
+              className="flex flex-col rounded-2xl border border-white/10 bg-dark-card p-8"
+            >
+              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent/15 text-accent-light">
+                <GraduationCap className="h-6 w-6" />
+              </span>
+              <h3 className="mt-5 font-display text-xl font-bold">
+                {instructorTraining.title}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-white/60">
+                {instructorTraining.description}
+              </p>
+              <ul className="mt-6 flex-1 divide-y divide-white/10">
+                {instructorTraining.tiers.map((tier) => (
+                  <li
+                    key={tier.label}
+                    className="flex items-center justify-between gap-4 py-3"
+                  >
+                    <span className="text-sm text-white/80">{tier.label}</span>
+                    <span className="shrink-0 font-display text-base font-bold text-accent-light">
+                      {tier.price}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-4 rounded-xl bg-accent/10 px-4 py-3 text-sm text-white/75">
+                {instructorTraining.note}
+              </p>
+            </Reveal>
+          </div>
         </div>
       </section>
 

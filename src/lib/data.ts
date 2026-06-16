@@ -138,6 +138,38 @@ export const addOns: AddOn[] = [
   { label: "Vrácení ŘP a 90 min kondiční jízdy", price: "4 000 Kč" },
 ];
 
+export const skidSchool = {
+  title: "Škola (ne)smyku",
+  description:
+    "Zdokonalovací kurz pro absolventy autoškoly i začínající a pokročilé řidiče. Jízdy na delší vzdálenost po dálnici, správné průjezdy zatáček, bezpečné připojování a odpojování, předjíždění, zipování, dodržování bezpečné vzdálenosti i bezchybné parkování a práce s asistenty.",
+  options: [
+    { label: "5 + 1 lekcí", price: "9 500 Kč" },
+    { label: "3 lekce", price: "4 500 Kč" },
+  ],
+};
+
+export const instructorTraining = {
+  title: "Příprava budoucích učitelů autoškoly",
+  description:
+    "Připravíme vás na profesi učitele výuky a výcviku v autoškole, od kompletního oprávnění po rozšíření.",
+  tiers: [
+    { label: "Učitelské oprávnění (celé)", price: "od 30 000 Kč" },
+    { label: "Učitelské oprávnění – praktický výcvik", price: "od 25 000 Kč" },
+    { label: "Rozšíření", price: "od 20 000 Kč" },
+  ],
+  note: "Více žadatelů najednou: sleva 5 000 Kč.",
+};
+
+export const consultingAreas: string[] = [
+  "Registrace a vyřazení vozidel z registru, změny na vozidlech",
+  "Schvalování technické způsobilosti (dovoz ze zahraničí, stavby a přestavby)",
+  "Historická vozidla",
+  "Autoškoly",
+  "Řešení dopravních přestupků a bodové hodnocení",
+  "Dopravní nehody",
+  "Zastupování ve správním řízení (alkohol, drogy, vysoké sankce, zákaz činnosti)",
+];
+
 export const vehicleSpecs: string[] = [
   "Dieselový BMW X2",
   "Výkon přes 210 HP",

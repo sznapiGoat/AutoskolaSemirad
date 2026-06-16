@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { ArrowRight, Check, Car, GraduationCap, RefreshCw, Truck, Zap, BadgeCheck } from "lucide-react";
+import { ArrowRight, Check, Car, GraduationCap, RefreshCw, Truck, Zap, BadgeCheck, Scale } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ButtonLink } from "@/components/ui/Button";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/ui/Reveal";
 import { SmartImage } from "@/components/ui/SmartImage";
-import { vehicleSpecs } from "@/lib/data";
+import { vehicleSpecs, consultingAreas } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Služby",
@@ -118,6 +118,35 @@ export default function ServicesPage() {
               ))}
             </ul>
           </div>
+        </div>
+      </section>
+
+      {/* Consulting */}
+      <section className="bg-dark text-white">
+        <div className="mx-auto grid max-w-container gap-12 py-20 container-px sm:py-24 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+          <div>
+            <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent/15 text-accent-light">
+              <Scale className="h-6 w-6" />
+            </span>
+            <SectionHeading
+              dark
+              className="mt-6"
+              eyebrow="Poradenství"
+              title="Poradenství a zastupování"
+              description="Nabízíme pomoc, konzultace i zastoupení jako obecný zmocněnec v oblastech dopravy a vozidel. Dopravní přestupky řešíme i ve správním řízení, včetně případů, kde hrozí vysoké sankce nebo zákaz činnosti."
+            />
+          </div>
+          <StaggerGroup className="grid content-start gap-3 sm:grid-cols-2">
+            {consultingAreas.map((area) => (
+              <StaggerItem
+                key={area}
+                className="flex items-start gap-3 rounded-xl border border-white/10 bg-dark-card p-4 text-sm text-white/80"
+              >
+                <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent-light" />
+                {area}
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
         </div>
       </section>
 
