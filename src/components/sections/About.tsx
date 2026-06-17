@@ -14,8 +14,8 @@ export function About() {
   return (
     <section className="bg-bg-muted">
       <div className="mx-auto grid max-w-container items-center gap-12 py-20 container-px sm:py-28 lg:grid-cols-2 lg:gap-16">
-        {/* image composition */}
-        <Reveal className="relative">
+        {/* instructor photo */}
+        <Reveal>
           <SmartImage
             src="/images/instructor.jpg"
             alt={`${site.owner}, lektor autoškoly Royal Cars`}
@@ -25,17 +25,6 @@ export function About() {
             sizes="(min-width: 1024px) 50vw, 100vw"
             className="aspect-[5/4] w-full rounded-2xl object-cover shadow-card"
           />
-          <div className="absolute -bottom-6 -right-4 hidden w-44 overflow-hidden rounded-xl border-4 border-bg-muted shadow-card-hover sm:block lg:w-52">
-            <SmartImage
-              src="/images/ucebna.jpg"
-              alt="Učebna autoškoly Royal Cars v Liberci"
-              label="Naše učebna"
-              width={420}
-              height={300}
-              sizes="220px"
-              className="aspect-[4/3] w-full object-cover"
-            />
-          </div>
         </Reveal>
 
         {/* text */}

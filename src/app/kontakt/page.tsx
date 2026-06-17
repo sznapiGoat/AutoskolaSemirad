@@ -134,18 +134,39 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Map */}
+      {/* Showroom + map */}
       <section className="bg-bg-muted">
-        <div className="mx-auto max-w-container py-16 container-px">
-          <Reveal className="overflow-hidden rounded-2xl border border-line shadow-card">
-            <iframe
-              title="Mapa sídla autoškoly Royal Cars"
-              src={mapSrc}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="h-[420px] w-full border-0"
-            />
-          </Reveal>
+        <div className="mx-auto max-w-container py-16 container-px sm:py-20">
+          <SectionHeading
+            eyebrow="Kde nás najdete"
+            title="Naše učebna v Liberci"
+            description="Zastavte se u nás v moderní učebně v Doubí. Rádi vám vše ukážeme a probereme termín nástupu."
+          />
+          <div className="mt-10 grid gap-6 lg:grid-cols-2">
+            <Reveal className="overflow-hidden rounded-2xl border border-line shadow-card">
+              <SmartImage
+                src="/images/ucebna.jpg"
+                alt="Učebna autoškoly Royal Cars v Liberci"
+                label="Naše učebna"
+                width={880}
+                height={560}
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="h-full min-h-[320px] w-full object-cover lg:min-h-[420px]"
+              />
+            </Reveal>
+            <Reveal
+              delay={0.1}
+              className="overflow-hidden rounded-2xl border border-line shadow-card"
+            >
+              <iframe
+                title="Mapa sídla autoškoly Royal Cars"
+                src={mapSrc}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="h-[320px] w-full border-0 lg:h-full lg:min-h-[420px]"
+              />
+            </Reveal>
+          </div>
         </div>
       </section>
     </>
