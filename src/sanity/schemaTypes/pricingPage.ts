@@ -1,0 +1,50 @@
+import { defineField, defineType } from "sanity";
+
+export const pricingPage = defineType({
+  name: "pricingPage",
+  title: "Stránka Ceník",
+  type: "document",
+  fields: [
+    defineField({ name: "headerEyebrow", title: "Hlavička – eyebrow", type: "string" }),
+    defineField({ name: "headerTitle", title: "Hlavička – nadpis", type: "string" }),
+    defineField({ name: "headerDescription", title: "Hlavička – popis", type: "text", rows: 3 }),
+    defineField({
+      name: "groups",
+      title: "Skupiny kurzů",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            defineField({ name: "id", title: "ID (B / D)", type: "string" }),
+            defineField({ name: "title", title: "Nadpis", type: "string" }),
+            defineField({ name: "subtitle", title: "Podnadpis", type: "string" }),
+          ],
+          preview: { select: { title: "title", subtitle: "subtitle" } },
+        },
+      ],
+    }),
+    defineField({ name: "packages", title: "Balíčky a kurzy", type: "array", of: [{ type: "packageItem" }] }),
+    defineField({ name: "furtherEyebrow", title: "Další kurzy – eyebrow", type: "string" }),
+    defineField({ name: "furtherTitle", title: "Další kurzy – nadpis", type: "string" }),
+    defineField({ name: "furtherDescription", title: "Další kurzy – popis", type: "text", rows: 2 }),
+    defineField({ name: "skidTitle", title: "Škola smyku – nadpis", type: "string" }),
+    defineField({ name: "skidDescription", title: "Škola smyku – popis", type: "text", rows: 3 }),
+    defineField({ name: "skidOptions", title: "Škola smyku – ceny", type: "array", of: [{ type: "priceRow" }] }),
+    defineField({ name: "instructorTitle", title: "Učitelé – nadpis", type: "string" }),
+    defineField({ name: "instructorDescription", title: "Učitelé – popis", type: "text", rows: 2 }),
+    defineField({ name: "instructorTiers", title: "Učitelé – ceny", type: "array", of: [{ type: "priceRow" }] }),
+    defineField({ name: "instructorNote", title: "Učitelé – poznámka", type: "string" }),
+    defineField({ name: "addOnsEyebrow", title: "Doplňky – eyebrow", type: "string" }),
+    defineField({ name: "addOnsTitle", title: "Doplňky – nadpis", type: "string" }),
+    defineField({ name: "addOnsDescription", title: "Doplňky – popis", type: "text", rows: 2 }),
+    defineField({ name: "addOns", title: "Doplňkové služby", type: "array", of: [{ type: "priceRow" }] }),
+    defineField({ name: "addOnsNote", title: "Doplňky – poznámka", type: "text", rows: 2 }),
+    defineField({ name: "faqEyebrow", title: "FAQ – eyebrow", type: "string" }),
+    defineField({ name: "faqTitle", title: "FAQ – nadpis", type: "string" }),
+    defineField({ name: "faqDescription", title: "FAQ – popis", type: "text", rows: 2 }),
+    defineField({ name: "faqs", title: "Časté dotazy", type: "array", of: [{ type: "faqItem" }] }),
+    defineField({ name: "cta", title: "Závěrečná výzva", type: "ctaBand" }),
+  ],
+  preview: { prepare: () => ({ title: "Stránka Ceník" }) },
+});
