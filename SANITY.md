@@ -6,7 +6,9 @@ dataset prázdný.
 
 - **Projekt:** AutoskolaSemirad (`hd19qymi`)
 - **Dataset:** `production` (veřejně čitelný)
-- **Studio (editace obsahu):** `/studio` na běžícím webu (např. http://localhost:3000/studio)
+- **Studio (editace obsahu):**
+  - lokálně: http://localhost:3000/studio
+  - produkce: **https://studio.semirad.com** (subdoména přesměruje na `/studio`)
 - **Konfigurace:** `.env.local` (není v gitu)
 
 ## První nastavení (jednorázově)
@@ -19,11 +21,25 @@ dataset prázdný.
    ```bash
    npm run sanity:cors          # přidá http://localhost:3000
    ```
-   Pro produkci přidej i ostrou doménu:
+   Pro produkci přidej i doménu Studia:
    ```bash
-   npx sanity cors add https://sumi-lbc.cz --credentials
+   npm run sanity:cors:prod     # přidá https://studio.semirad.com
    ```
    (Totéž jde klikací cestou: sanity.io/manage → API → CORS origins.)
+
+## Studio na vlastní doméně (studio.semirad.com)
+
+Studio je součástí Next aplikace nasazené na Vercelu. Subdoménu na něj napojíš takto:
+
+1. **Vercel → projekt → Settings → Domains → Add** → `studio.semirad.com`.
+2. **DNS u registrátora semirad.com**: přidej `CNAME` záznam
+   `studio` → `cname.vercel-dns.com` (přesnou hodnotu ukáže Vercel).
+3. **CORS v Sanity**: `npm run sanity:cors:prod` (nebo ručně přidej
+   `https://studio.semirad.com` s „Allow credentials“).
+
+Middleware (`src/middleware.ts`) pak na této subdoméně přesměruje kořen na
+`/studio`, takže `studio.semirad.com` otevře rovnou CMS. Hlavní web běží dál na
+své doméně.
 3. **Spustit web a otevřít Studio**
    ```bash
    npm run dev

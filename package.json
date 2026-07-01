@@ -10,6 +10,7 @@
     "sanity": "sanity",
     "sanity:login": "sanity login",
     "sanity:cors": "sanity cors add http://localhost:3000 --credentials",
+    "sanity:cors:prod": "sanity cors add https://studio.semirad.com --credentials",
     "sanity:manage": "sanity manage",
     "sanity:deploy": "sanity deploy",
     "sanity:export": "sanity dataset export production ./sanity-backup.tar.gz",
