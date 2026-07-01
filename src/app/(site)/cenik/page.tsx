@@ -4,14 +4,8 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ButtonLink } from "@/components/ui/Button";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/ui/Reveal";
 import { Faq } from "@/components/sections/Faq";
-import {
-  packages,
-  addOns,
-  packageGroups,
-  skidSchool,
-  instructorTraining,
-  type Package,
-} from "@/lib/data";
+import { getPricingContent } from "@/lib/content";
+import { type Package } from "@/lib/data";
 
 function PackageCard({ pkg }: { pkg: Package }) {
   return (
@@ -78,7 +72,10 @@ export const metadata: Metadata = {
     "Ceník kurzů autoškoly Royal Cars Liberec: skupina B, VIP balíčky, kondiční jízdy a doplňkové služby. Splátky bez navýšení.",
 };
 
-export default function PricingPage() {
+export default async function PricingPage() {
+  const content = await getPricingContent();
+  const { skid, instructorTraining, addOns } = content;
+
   return (
     <>
       {/* Header */}
@@ -86,9 +83,9 @@ export default function PricingPage() {
         <div className="mx-auto max-w-container pb-16 container-px">
           <SectionHeading
             dark
-            eyebrow="Ceník"
-            title="Férové ceny, žádná překvapení"
-            description="Vyberte si balíček podle toho, kolik komfortu a rychlosti potřebujete. Všechny ceny lze rozložit do splátek bez navýšení."
+            eyebrow={content.header.eyebrow}
+            title={content.header.title}
+            description={content.header.description}
           />
         </div>
       </section>
@@ -96,8 +93,8 @@ export default function PricingPage() {
       {/* Packages by group */}
       <section className="bg-bg">
         <div className="mx-auto max-w-container space-y-16 py-20 container-px sm:py-24">
-          {packageGroups.map((group) => {
-            const items = packages.filter((p) => p.group === group.id);
+          {content.groups.map((group) => {
+            const items = content.packages.filter((p) => p.group === group.id);
             if (items.length === 0) return null;
             return (
               <div key={group.id}>
@@ -133,12 +130,12 @@ export default function PricingPage() {
               <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent/15 text-accent-light">
                 <Snowflake className="h-6 w-6" />
               </span>
-              <h3 className="mt-5 font-display text-xl font-bold">{skidSchool.title}</h3>
+              <h3 className="mt-5 font-display text-xl font-bold">{skid.title}</h3>
               <p className="mt-2 flex-1 text-sm leading-relaxed text-white/60">
-                {skidSchool.description}
+                {skid.description}
               </p>
               <ul className="mt-6 space-y-3">
-                {skidSchool.options.map((opt) => (
+                {skid.options.map((opt) => (
                   <li
                     key={opt.label}
                     className="flex items-center justify-between rounded-xl border border-white/10 bg-white/5 px-4 py-3"
@@ -196,13 +193,13 @@ export default function PricingPage() {
       <section className="bg-bg-muted">
         <div className="mx-auto max-w-container py-20 container-px sm:py-24">
           <SectionHeading
-            eyebrow="Doplňkové služby"
-            title="Jednotlivé jízdy a další služby"
-            description="Ceny za jednotlivé úkony nad rámec kurzu a samostatné služby."
+            eyebrow={addOns.eyebrow}
+            title={addOns.title}
+            description={addOns.description}
           />
           <Reveal className="mt-12 overflow-hidden rounded-2xl border border-line bg-white shadow-card">
             <ul className="divide-y divide-line">
-              {addOns.map((item) => (
+              {addOns.items.map((item) => (
                 <li
                   key={item.label}
                   className="flex items-center justify-between gap-4 px-6 py-4 transition-colors hover:bg-bg-muted"
@@ -216,13 +213,18 @@ export default function PricingPage() {
             </ul>
           </Reveal>
           <Reveal delay={0.1} className="mt-6 text-sm text-ink-muted">
-            Ceny jsou orientační. Konkrétní nabídku a podmínky splátek vám rádi
-            potvrdíme na vyžádání.
+            {addOns.note}
           </Reveal>
         </div>
       </section>
 
-      <Faq tone="white" />
+      <Faq
+        tone="white"
+        eyebrow={content.faq.eyebrow}
+        title={content.faq.title}
+        description={content.faq.description}
+        items={content.faq.items}
+      />
 
       {/* CTA */}
       <section className="relative overflow-hidden bg-accent">

@@ -7,20 +7,31 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { ButtonLink } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
-import { faqs } from "@/lib/data";
+import { faqs as defaultFaqs, type Faq as FaqItem } from "@/lib/data";
 
-export function Faq({ tone = "muted" }: { tone?: "muted" | "white" }) {
+type FaqProps = {
+  tone?: "muted" | "white";
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  items?: FaqItem[];
+};
+
+export function Faq({
+  tone = "muted",
+  eyebrow = "Časté dotazy",
+  title = "Na co se nejčastěji ptáte",
+  description = "Nenašli jste odpověď? Zavolejte nám, rádi poradíme.",
+  items = defaultFaqs,
+}: FaqProps) {
   const [open, setOpen] = useState<number | null>(0);
+  const faqs = items;
 
   return (
     <section className={tone === "white" ? "bg-bg" : "bg-bg-muted"}>
       <div className="mx-auto grid max-w-container gap-12 py-20 container-px sm:py-28 lg:grid-cols-[0.8fr_1.2fr]">
         <div>
-          <SectionHeading
-            eyebrow="Časté dotazy"
-            title="Na co se nejčastěji ptáte"
-            description="Nenašli jste odpověď? Zavolejte nám, rádi poradíme."
-          />
+          <SectionHeading eyebrow={eyebrow} title={title} description={description} />
           <Reveal delay={0.1} className="mt-8 hidden lg:block">
             <ButtonLink href="/kontakt" variant="outline">
               Zeptat se přímo

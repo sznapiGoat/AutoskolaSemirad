@@ -5,6 +5,7 @@ import { homePage } from "./homePage";
 import { servicesPage } from "./servicesPage";
 import { pricingPage } from "./pricingPage";
 import { contactPage } from "./contactPage";
+import { post } from "./post";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -13,6 +14,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     servicesPage,
     pricingPage,
     contactPage,
+    post,
     ...sharedObjects,
   ],
 };

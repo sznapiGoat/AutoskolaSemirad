@@ -190,6 +190,46 @@ export const serviceOptions = [
   "Jiné",
 ];
 
+export const instructorLicense = "A, B, C, D, B+E, C+E, D+E";
+
+export const instructorHighlights = [
+  { value: "35+", label: "let praxe v oboru" },
+  { value: "A–D+E", label: "rozsah učitelského oprávnění" },
+  { value: "24 let", label: "praxe zkušebního komisaře řidičů" },
+];
+
+export const instructorExpertise: string[] = [
+  "Autoškoly a kontroly autoškol",
+  "Dohled nad silničním provozem a řešení přestupků",
+  "Schvalování technické způsobilosti vozidel",
+  "Registrace a vyřazování vozidel",
+  "Stanice technické kontroly a měření emisí",
+  "Organizace zkoušek řidičů jako hlavní zkušební komisař",
+  "Vedení dopravně správních agend a registru vozidel",
+];
+
+export type Education = { school: string; detail: string };
+
+export const instructorEducation: Education[] = [
+  {
+    school: "Střední průmyslová škola automobilní, Teplice",
+    detail: "Obor 37-44-06 Provoz a ekonomika automobilové dopravy",
+  },
+  { school: "Střední policejní škola, Praha", detail: "" },
+  {
+    school: "Technická univerzita v Liberci",
+    detail: "Pedagogika, psychologie a právní aspekty",
+  },
+  {
+    school: "Metropolitní univerzita Praha",
+    detail: "Evropské správní právo a teorie veřejné správy",
+  },
+  {
+    school: "Zkušební komisař řidičů",
+    detail: "Kompletní rozsah A–D+E, praxe téměř 24 let",
+  },
+];
+
 export type Testimonial = {
   quote: string;
   name: string;

@@ -23,5 +23,6 @@ export const nav = [
   { label: "Úvod", href: "/" },
   { label: "Služby", href: "/sluzby" },
   { label: "Ceník", href: "/cenik" },
+  { label: "Aktuality", href: "/aktuality" },
   { label: "Kontakt", href: "/kontakt" },
 ];

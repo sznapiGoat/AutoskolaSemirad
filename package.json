@@ -6,7 +6,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "sanity": "sanity",
+    "sanity:login": "sanity login",
+    "sanity:cors": "sanity cors add http://localhost:3000 --credentials",
+    "sanity:manage": "sanity manage",
+    "sanity:deploy": "sanity deploy",
+    "sanity:export": "sanity dataset export production ./sanity-backup.tar.gz",
+    "sanity:import": "sanity dataset import ./sanity-backup.tar.gz production"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",

@@ -11,11 +11,13 @@ const SINGLETONS: { id: string; title: string }[] = [
 export const structure: StructureResolver = (S) =>
   S.list()
     .title("Obsah webu")
-    .items(
-      SINGLETONS.map(({ id, title }) =>
+    .items([
+      ...SINGLETONS.map(({ id, title }) =>
         S.listItem()
           .title(title)
           .id(id)
           .child(S.document().schemaType(id).documentId(id)),
       ),
-    );
+      S.divider(),
+      S.documentTypeListItem("post").title("Aktuality"),
+    ]);

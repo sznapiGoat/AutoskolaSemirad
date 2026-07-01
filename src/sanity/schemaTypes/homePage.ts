@@ -51,6 +51,44 @@ export const homePage = defineType({
     defineField({ name: "aboutInstructorName", title: "Jméno lektora", type: "string", group: "about" }),
     defineField({ name: "aboutInstructorRole", title: "Role lektora", type: "string", group: "about" }),
     defineField({ name: "aboutImage", title: "Fotka lektora", type: "image", options: { hotspot: true }, group: "about" }),
+    // About – profesní profil (bio)
+    defineField({
+      name: "aboutHighlights",
+      title: "Klíčová čísla (např. 35+ let praxe)",
+      type: "array",
+      group: "about",
+      of: [
+        {
+          type: "object",
+          fields: [
+            defineField({ name: "value", title: "Hodnota", type: "string" }),
+            defineField({ name: "label", title: "Popis", type: "string" }),
+          ],
+          preview: { select: { title: "value", subtitle: "label" } },
+        },
+      ],
+    }),
+    defineField({ name: "aboutLicense", title: "Rozsah oprávnění (A, B, C, D…)", type: "string", group: "about" }),
+    defineField({ name: "aboutExpertiseTitle", title: "Zkušenosti – nadpis", type: "string", group: "about" }),
+    defineField({ name: "aboutExpertiseText", title: "Zkušenosti – popis", type: "text", rows: 3, group: "about" }),
+    defineField({ name: "aboutExpertise", title: "Zkušenosti – body", type: "array", of: [{ type: "string" }], group: "about" }),
+    defineField({ name: "aboutEducationTitle", title: "Vzdělání – nadpis", type: "string", group: "about" }),
+    defineField({
+      name: "aboutEducation",
+      title: "Vzdělání – položky",
+      type: "array",
+      group: "about",
+      of: [
+        {
+          type: "object",
+          fields: [
+            defineField({ name: "school", title: "Škola / kvalifikace", type: "string" }),
+            defineField({ name: "detail", title: "Obor / detail", type: "string" }),
+          ],
+          preview: { select: { title: "school", subtitle: "detail" } },
+        },
+      ],
+    }),
     // Vehicle
     defineField({ name: "vehicleEyebrow", title: "Eyebrow", type: "string", group: "vehicle" }),
     defineField({ name: "vehicleTitle", title: "Nadpis", type: "string", group: "vehicle" }),
