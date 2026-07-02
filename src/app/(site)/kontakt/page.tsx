@@ -4,7 +4,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { SmartImage } from "@/components/ui/SmartImage";
 import { ContactForm } from "@/components/sections/ContactForm";
-import { site } from "@/lib/site";
+import { getContactContent, getSiteSettings } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Kontakt",
@@ -12,9 +12,9 @@ export const metadata: Metadata = {
     "Kontaktujte autoškolu Royal Cars Liberec, Mgr. Josef Semirád. Telefon, e-mail, adresa učebny a online poptávkový formulář.",
 };
 
-const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(site.mapQuery)}&output=embed`;
-
-export default function ContactPage() {
+export default async function ContactPage() {
+  const [content, s] = await Promise.all([getContactContent(), getSiteSettings()]);
+  const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(s.mapQuery)}&output=embed`;
   return (
     <>
       {/* Header */}
@@ -22,9 +22,9 @@ export default function ContactPage() {
         <div className="mx-auto max-w-container pb-16 container-px">
           <SectionHeading
             dark
-            eyebrow="Kontakt"
-            title="Domluvme se na nástupu"
-            description="Zavolejte, napište nebo vyplňte formulář. Ozveme se vám co nejdříve a probereme termín i vhodný balíček."
+            eyebrow={content.header.eyebrow}
+            title={content.header.title}
+            description={content.header.description}
           />
         </div>
       </section>
@@ -37,7 +37,7 @@ export default function ContactPage() {
             <div className="relative overflow-hidden rounded-2xl shadow-card">
               <SmartImage
                 src="/images/instructor-driving.jpg"
-                alt={`${site.owner} za volantem`}
+                alt={`${content.instructorName} za volantem`}
                 label="Lektor za volantem"
                 width={900}
                 height={600}
@@ -46,21 +46,17 @@ export default function ContactPage() {
               />
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-5 pt-12">
                 <p className="font-display text-lg font-bold text-white">
-                  {site.owner}
+                  {content.instructorName}
                 </p>
-                <p className="text-sm text-white/70">
-                  Zakladatel a lektor autoškoly {site.name}
-                </p>
+                <p className="text-sm text-white/70">{content.instructorRole}</p>
               </div>
             </div>
 
             <div>
               <h3 className="font-display text-xl font-bold text-ink">
-                {site.fullName}
+                {s.fullName}
               </h3>
-              <p className="mt-1 text-sm text-ink-muted">
-                Těšíme se na vás v naší učebně v Liberci.
-              </p>
+              <p className="mt-1 text-sm text-ink-muted">{content.infoSubtext}</p>
             </div>
 
             <ul className="space-y-5 text-sm">
@@ -69,9 +65,9 @@ export default function ContactPage() {
                   <MapPin className="h-5 w-5" />
                 </span>
                 <span className="text-ink">
-                  {site.address.street}
+                  {s.address.street}
                   <br />
-                  {site.address.city}
+                  {s.address.city}
                 </span>
               </li>
               <li className="flex items-start gap-4">
@@ -79,10 +75,10 @@ export default function ContactPage() {
                   <Phone className="h-5 w-5" />
                 </span>
                 <a
-                  href={site.phoneHref}
+                  href={s.phoneHref}
                   className="font-semibold text-ink transition-colors hover:text-accent"
                 >
-                  {site.phone}
+                  {s.phone}
                 </a>
               </li>
               <li className="flex items-start gap-4">
@@ -90,10 +86,10 @@ export default function ContactPage() {
                   <Mail className="h-5 w-5" />
                 </span>
                 <a
-                  href={`mailto:${site.email}`}
+                  href={`mailto:${s.email}`}
                   className="text-ink transition-colors hover:text-accent"
                 >
-                  {site.email}
+                  {s.email}
                 </a>
               </li>
               <li className="flex items-start gap-4">
@@ -101,9 +97,9 @@ export default function ContactPage() {
                   <Clock className="h-5 w-5" />
                 </span>
                 <span className="text-ink">
-                  Po–Pá: {site.hours.weekdays}
+                  Po–Pá: {s.hours.weekdays}
                   <br />
-                  So–Ne: {site.hours.weekend}
+                  So–Ne: {s.hours.weekend}
                 </span>
               </li>
               <li className="flex items-start gap-4">
@@ -113,7 +109,7 @@ export default function ContactPage() {
                 <span className="text-ink">
                   Bankovní účet
                   <br />
-                  <span className="text-ink-muted">{site.bankAccount}</span>
+                  <span className="text-ink-muted">{s.bankAccount}</span>
                 </span>
               </li>
             </ul>
@@ -122,11 +118,9 @@ export default function ContactPage() {
           {/* Form */}
           <Reveal delay={0.1} className="rounded-2xl border border-line bg-white p-7 shadow-card sm:p-9">
             <h3 className="font-display text-xl font-bold text-ink">
-              Nezávazná poptávka
+              {content.formHeading}
             </h3>
-            <p className="mt-1.5 text-sm text-ink-muted">
-              Vyplňte formulář a my se vám ozveme.
-            </p>
+            <p className="mt-1.5 text-sm text-ink-muted">{content.formSubtext}</p>
             <div className="mt-7">
               <ContactForm />
             </div>
@@ -138,9 +132,9 @@ export default function ContactPage() {
       <section className="bg-bg-muted">
         <div className="mx-auto max-w-container py-16 container-px sm:py-20">
           <SectionHeading
-            eyebrow="Kde nás najdete"
-            title="Naše učebna v Liberci"
-            description="Zastavte se u nás v moderní učebně v Doubí. Rádi vám vše ukážeme a probereme termín nástupu."
+            eyebrow={content.showroom.eyebrow}
+            title={content.showroom.title}
+            description={content.showroom.description}
           />
           <div className="mt-10 grid gap-6 lg:grid-cols-2">
             <Reveal className="overflow-hidden rounded-2xl border border-line shadow-card">

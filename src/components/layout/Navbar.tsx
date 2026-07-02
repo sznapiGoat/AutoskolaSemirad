@@ -10,7 +10,13 @@ import { nav, site } from "@/lib/site";
 import { Logo } from "./Logo";
 import { ButtonLink } from "@/components/ui/Button";
 
-export function Navbar() {
+export function Navbar({
+  phone = site.phone,
+  phoneHref = site.phoneHref,
+}: {
+  phone?: string;
+  phoneHref?: string;
+} = {}) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
@@ -134,11 +140,11 @@ export function Navbar() {
                   Chci řidičák
                 </ButtonLink>
                 <a
-                  href={site.phoneHref}
+                  href={phoneHref}
                   className="flex items-center justify-center gap-2 text-lg font-semibold text-ink"
                 >
                   <Phone className="h-5 w-5 text-accent" />
-                  {site.phone}
+                  {phone}
                 </a>
               </div>
             </div>

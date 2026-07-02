@@ -2,15 +2,17 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { DemoBadge } from "@/components/layout/DemoBadge";
 import { Toaster } from "sonner";
+import { getSiteSettings } from "@/lib/content";
 
-export default function SiteLayout({
+export default async function SiteLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const settings = await getSiteSettings();
   return (
     <>
-      <Navbar />
+      <Navbar phone={settings.phone} phoneHref={settings.phoneHref} />
       <main>{children}</main>
-      <Footer />
+      <Footer settings={settings} />
       <DemoBadge />
       <Toaster
         position="top-center"

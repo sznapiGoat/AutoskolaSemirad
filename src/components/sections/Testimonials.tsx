@@ -1,17 +1,26 @@
 import { Quote, Star } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { StaggerGroup, StaggerItem } from "@/components/ui/Reveal";
-import { testimonials } from "@/lib/data";
+import { testimonials as defaultTestimonials, type Testimonial } from "@/lib/data";
 
-export function Testimonials() {
+type TestimonialsProps = {
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  items?: Testimonial[];
+};
+
+export function Testimonials({
+  eyebrow = "Reference",
+  title = "Co říkají naši žáci",
+  description = "Zkušenosti lidí, kteří u nás získali řidičák nebo si obnovili jistotu za volantem.",
+  items = defaultTestimonials,
+}: TestimonialsProps) {
+  const testimonials = items;
   return (
     <section className="bg-bg">
       <div className="mx-auto max-w-container py-20 container-px sm:py-28">
-        <SectionHeading
-          eyebrow="Reference"
-          title="Co říkají naši žáci"
-          description="Zkušenosti lidí, kteří u nás získali řidičák nebo si obnovili jistotu za volantem."
-        />
+        <SectionHeading eyebrow={eyebrow} title={title} description={description} />
         <StaggerGroup className="mt-14 grid gap-6 sm:grid-cols-2">
           {testimonials.map((t) => (
             <StaggerItem

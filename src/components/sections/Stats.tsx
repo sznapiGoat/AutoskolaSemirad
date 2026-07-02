@@ -8,14 +8,15 @@ type Stat = {
   label: string;
 };
 
-const stats: Stat[] = [
+const defaultStats: Stat[] = [
   { value: 30, suffix: "", label: "hodin praktických jízd ve standardu" },
   { value: 5, suffix: "", label: "balíčků kurzů na výběr" },
   { value: 17999, suffix: " Kč", prefix: "od ", label: "cena základního kurzu" },
   { value: 3, suffix: "", label: "splátky bez navýšení" },
 ];
 
-export function Stats() {
+export function Stats({ items = defaultStats }: { items?: Stat[] }) {
+  const stats = items;
   return (
     <section className="relative bg-dark-card">
       <div className="absolute inset-x-0 top-0 h-0.5 bg-accent" />

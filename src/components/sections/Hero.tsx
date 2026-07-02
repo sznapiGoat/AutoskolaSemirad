@@ -23,7 +23,25 @@ const trust = [
   { icon: ShieldCheck, label: "Splátky bez navýšení" },
 ];
 
-export function Hero() {
+type HeroProps = {
+  titleLine1?: string;
+  titleLine2?: string;
+  subtitle?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+  phone?: string;
+  phoneHref?: string;
+};
+
+export function Hero({
+  titleLine1 = "Jiná liga.",
+  titleLine2 = "Autoškola v Liberci.",
+  subtitle = "Individuální přístup, výcvik v BMW X2 a vysoká úspěšnost u zkoušek. Začít můžete prakticky ihned.",
+  ctaLabel = "Zjistit ceny",
+  ctaHref = "/cenik",
+  phone = site.phone,
+  phoneHref = site.phoneHref,
+}: HeroProps = {}) {
   return (
     <section className="relative flex min-h-dvh items-center overflow-hidden bg-dark">
       {/* photo layer (falls back to a branded panel when missing) */}
@@ -51,7 +69,7 @@ export function Hero() {
       <div className="relative mx-auto w-full max-w-container pb-20 pt-32 container-px">
         <h1 className="max-w-4xl font-display text-5xl font-bold leading-[0.95] tracking-tight text-white sm:text-6xl lg:text-[5.25rem]">
           <motion.span custom={0} variants={lineVariants} initial="hidden" animate="show" className="block">
-            Jiná liga.
+            {titleLine1}
           </motion.span>
           <motion.span
             custom={1}
@@ -60,7 +78,7 @@ export function Hero() {
             animate="show"
             className="block bg-gradient-to-r from-accent-light via-accent to-accent-light bg-clip-text text-transparent"
           >
-            Autoškola v Liberci.
+            {titleLine2}
           </motion.span>
         </h1>
 
@@ -71,8 +89,7 @@ export function Hero() {
           animate="show"
           className="mt-7 max-w-xl text-lg leading-relaxed text-white/70 text-pretty"
         >
-          Individuální přístup, výcvik v BMW X2 a vysoká úspěšnost u zkoušek.
-          Začít můžete prakticky ihned.
+          {subtitle}
         </motion.p>
 
         <motion.div
@@ -82,18 +99,18 @@ export function Hero() {
           animate="show"
           className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center"
         >
-          <ButtonLink href="/cenik">
-            Zjistit ceny
+          <ButtonLink href={ctaHref}>
+            {ctaLabel}
             <ArrowRight className="h-4 w-4" />
           </ButtonLink>
           <a
-            href={site.phoneHref}
+            href={phoneHref}
             className="group inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-white backdrop-blur transition-colors hover:border-white/40"
           >
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-accent transition-transform duration-200 group-hover:scale-110">
               <Phone className="h-4 w-4" />
             </span>
-            <span className="text-lg font-semibold tracking-tight">{site.phone}</span>
+            <span className="text-lg font-semibold tracking-tight">{phone}</span>
           </a>
         </motion.div>
 

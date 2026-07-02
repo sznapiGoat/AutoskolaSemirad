@@ -10,6 +10,35 @@ export const pricingPageQuery = groq`*[_type == "pricingPage"][0]{
   faqEyebrow, faqTitle, faqDescription, faqs[]{ q, a }
 }`;
 
+export const homePageQuery = groq`*[_type == "homePage"][0]{
+  heroTitleLine1, heroTitleLine2, heroSubtitle, heroCtaLabel, heroCtaHref,
+  stats[]{ value, prefix, suffix, label },
+  whyEyebrow, whyTitle, whyDescription, features[]{ icon, title, text },
+  vehicleEyebrow, vehicleTitle, vehicleDescription, vehicleSpecs,
+  marquee,
+  packagesEyebrow, packagesTitle, packagesDescription,
+  testimonialsEyebrow, testimonialsTitle, testimonialsDescription,
+  testimonials[]{ quote, name, detail },
+  faqEyebrow, faqTitle, faqDescription,
+  cta{ title, text, ctaLabel, ctaHref }
+}`;
+
+export const servicesPageQuery = groq`*[_type == "servicesPage"][0]{
+  headerEyebrow, headerTitle, headerDescription,
+  services[]{ icon, title, text },
+  vehicleEyebrow, vehicleTitle, vehicleDescription, vehicleSpecs,
+  consultingEyebrow, consultingTitle, consultingDescription, consultingAreas,
+  stepsEyebrow, stepsTitle, steps[]{ n, title, text },
+  cta{ title, text, ctaLabel, ctaHref }
+}`;
+
+export const contactPageQuery = groq`*[_type == "contactPage"][0]{
+  headerEyebrow, headerTitle, headerDescription,
+  instructorName, instructorRole, infoSubtext,
+  formHeading, formSubtext,
+  showroomEyebrow, showroomTitle, showroomDescription
+}`;
+
 export const aboutQuery = groq`*[_type == "homePage"][0]{
   aboutEyebrow, aboutTitle, aboutDescription, aboutPoints,
   aboutInstructorName, aboutInstructorRole,

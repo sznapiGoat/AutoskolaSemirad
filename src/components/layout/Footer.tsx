@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { nav, site } from "@/lib/site";
+import type { ResolvedSite } from "@/lib/content";
 import { Logo } from "./Logo";
 
-export function Footer() {
+export function Footer({ settings = site }: { settings?: ResolvedSite }) {
+  const s = settings;
   return (
     <footer className="relative bg-dark text-white">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent to-transparent" />
@@ -43,27 +45,27 @@ export function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
                 <span>
-                  {site.address.street}
+                  {s.address.street}
                   <br />
-                  {site.address.city}
+                  {s.address.city}
                 </span>
               </li>
               <li>
                 <a
-                  href={site.phoneHref}
+                  href={s.phoneHref}
                   className="flex items-center gap-3 transition-colors hover:text-accent-light"
                 >
                   <Phone className="h-4 w-4 shrink-0 text-accent" />
-                  {site.phone}
+                  {s.phone}
                 </a>
               </li>
               <li>
                 <a
-                  href={`mailto:${site.email}`}
+                  href={`mailto:${s.email}`}
                   className="flex items-center gap-3 transition-colors hover:text-accent-light"
                 >
                   <Mail className="h-4 w-4 shrink-0 text-accent" />
-                  {site.email}
+                  {s.email}
                 </a>
               </li>
             </ul>
@@ -77,22 +79,22 @@ export function Footer() {
               <li className="flex items-start gap-3">
                 <Clock className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
                 <span>
-                  Po–Pá: {site.hours.weekdays}
+                  Po–Pá: {s.hours.weekdays}
                   <br />
-                  So–Ne: {site.hours.weekend}
+                  So–Ne: {s.hours.weekend}
                 </span>
               </li>
               <li className="text-white/45">
                 Bankovní účet
                 <br />
-                <span className="text-white/70">{site.bankAccount}</span>
+                <span className="text-white/70">{s.bankAccount}</span>
               </li>
             </ul>
           </div>
         </div>
 
         <div className="mt-14 border-t border-white/10 pt-6 text-xs text-white/40">
-          © 2025 {site.fullName}, {site.owner}
+          © 2025 {s.fullName}, {s.owner}
         </div>
       </div>
     </footer>
