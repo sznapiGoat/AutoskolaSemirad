@@ -8,7 +8,8 @@ dataset prázdný.
 - **Dataset:** `production` (veřejně čitelný)
 - **Studio (editace obsahu):**
   - lokálně: http://localhost:3000/studio
-  - produkce: **https://studio.semirad.com** (subdoména přesměruje na `/studio`)
+  - produkce: **https://autoskola-semirad.vercel.app/studio**
+  - (později přes subdoménu: https://studio.semirad.com → přesměruje na `/studio`)
 - **Konfigurace:** `.env.local` (není v gitu)
 
 ## První nastavení (jednorázově)
@@ -23,7 +24,8 @@ dataset prázdný.
    ```
    Pro produkci přidej i doménu Studia:
    ```bash
-   npm run sanity:cors:prod     # přidá https://studio.semirad.com
+   npm run sanity:cors:prod             # přidá https://autoskola-semirad.vercel.app
+   npm run sanity:cors:studio-domain    # (později) přidá https://studio.semirad.com
    ```
    (Totéž jde klikací cestou: sanity.io/manage → API → CORS origins.)
 
