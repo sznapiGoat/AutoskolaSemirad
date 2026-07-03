@@ -94,7 +94,7 @@ export function Footer({ settings = site }: { settings?: ResolvedSite }) {
         </div>
 
         <div className="mt-14 border-t border-white/10 pt-6 text-xs text-white/40">
-          © 2025 {s.fullName}, {s.owner}
+          © {new Date().getFullYear()} {s.fullName}, {s.owner}
         </div>
       </div>
     </footer>

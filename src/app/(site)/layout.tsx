@@ -1,6 +1,5 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { DemoBadge } from "@/components/layout/DemoBadge";
 import { Toaster } from "sonner";
 import { getSiteSettings } from "@/lib/content";
 
@@ -13,7 +12,6 @@ export default async function SiteLayout({
       <Navbar phone={settings.phone} phoneHref={settings.phoneHref} />
       <main>{children}</main>
       <Footer settings={settings} />
-      <DemoBadge />
       <Toaster
         position="top-center"
         toastOptions={{

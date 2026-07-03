@@ -2,24 +2,14 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { toast } from "sonner";
 import { Send } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { serviceOptions } from "@/lib/data";
+import { contactSchema, type ContactValues } from "@/lib/contactSchema";
+import { site } from "@/lib/site";
 
-const schema = z.object({
-  name: z.string().min(2, "Zadejte prosím jméno"),
-  phone: z
-    .string()
-    .min(9, "Zadejte platné telefonní číslo")
-    .regex(/^[+\d][\d\s]{8,}$/, "Zadejte platné telefonní číslo"),
-  email: z.string().email("Zadejte platný e-mail").or(z.literal("")),
-  service: z.string().min(1, "Vyberte službu"),
-  message: z.string().max(1000).optional(),
-});
-
-type FormValues = z.infer<typeof schema>;
+type FormValues = ContactValues;
 
 const fieldBase =
   "w-full rounded-xl border bg-white px-4 py-3 text-sm text-ink transition-colors placeholder:text-ink-muted/70 focus:outline-none focus:ring-2 focus:ring-accent/40";
@@ -31,15 +21,29 @@ export function ContactForm() {
     reset,
     formState: { errors, isSubmitting },
   } = useForm<FormValues>({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(contactSchema),
     defaultValues: { name: "", phone: "", email: "", service: "", message: "" },
   });
 
-  const onSubmit = async () => {
-    // Demo: no backend wired up yet. Simulate a successful submission.
-    await new Promise((r) => setTimeout(r, 700));
-    toast.success("Děkujeme! Ozveme se vám co nejdříve.");
-    reset();
+  const onSubmit = async (values: FormValues) => {
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => null);
+        throw new Error(data?.error || "Odeslání se nezdařilo.");
+      }
+      toast.success("Děkujeme! Ozveme se vám co nejdříve.");
+      reset();
+    } catch (err) {
+      toast.error(
+        err instanceof Error ? err.message : "Odeslání se nezdařilo.",
+        { description: `Zavolejte nám prosím na ${site.phone}.` },
+      );
+    }
   };
 
   return (
