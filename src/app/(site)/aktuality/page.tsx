@@ -8,9 +8,10 @@ import { getPosts } from "@/lib/content";
 import { urlForImage } from "@/sanity/image";
 
 export const metadata: Metadata = {
-  title: "Aktuality",
+  title: "Aktuality a termíny kurzů autoškoly",
   description:
     "Novinky, termíny kurzů a informace z autoškoly Royal Cars Liberec.",
+  alternates: { canonical: "/aktuality" },
 };
 
 function formatDate(iso: string) {

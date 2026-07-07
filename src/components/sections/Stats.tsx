@@ -36,7 +36,7 @@ export function Stats({ items = defaultStats }: { items?: Stat[] }) {
                 <AnimatedCounter value={stat.value} />
                 {stat.suffix && <span>{stat.suffix}</span>}
               </div>
-              <p className="mt-2 max-w-[14rem] text-sm leading-snug text-white/50">
+              <p className="mt-2 max-w-[14rem] text-sm leading-snug text-white/70">
                 {stat.label}
               </p>
             </StaggerItem>

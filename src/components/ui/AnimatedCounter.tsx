@@ -17,7 +17,9 @@ export function AnimatedCounter({
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
   const prefersReduced = useReducedMotion();
-  const [display, setDisplay] = useState(0);
+  // Start at the real value so crawlers and no-JS visitors see it in the HTML;
+  // the count-up only kicks in once the element scrolls into view.
+  const [display, setDisplay] = useState(value);
 
   useEffect(() => {
     if (!inView) return;

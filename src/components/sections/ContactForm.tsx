@@ -1,5 +1,8 @@
 "use client";
 
+import { useEffect } from "react";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
@@ -19,11 +22,26 @@ export function ContactForm() {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<FormValues>({
     resolver: zodResolver(contactSchema),
     defaultValues: { name: "", phone: "", email: "", service: "", message: "" },
   });
+
+  // Preselect the service and mention the package when the visitor arrives
+  // from a "Mám zájem" button on a pricing card (/kontakt?sluzba=…&balicek=…).
+  const searchParams = useSearchParams();
+  useEffect(() => {
+    const sluzba = searchParams.get("sluzba");
+    const balicek = searchParams.get("balicek");
+    if (sluzba && serviceOptions.includes(sluzba)) {
+      setValue("service", sluzba);
+    }
+    if (balicek) {
+      setValue("message", `Mám zájem o balíček ${balicek}.`);
+    }
+  }, [searchParams, setValue]);
 
   const onSubmit = async (values: FormValues) => {
     try {
@@ -148,6 +166,17 @@ export function ContactForm() {
         {isSubmitting ? "Odesílám…" : "Odeslat poptávku"}
         <Send className="h-4 w-4" />
       </button>
+
+      <p className="text-xs leading-relaxed text-ink-muted">
+        Odesláním formuláře berete na vědomí{" "}
+        <Link
+          href="/ochrana-osobnich-udaju"
+          className="underline underline-offset-2 transition-colors hover:text-accent"
+        >
+          zásady zpracování osobních údajů
+        </Link>
+        .
+      </p>
     </form>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Phone, ArrowRight, Star, ShieldCheck, Car } from "lucide-react";
+import { Phone, ArrowRight, ShieldCheck, Car, CalendarDays, Tag } from "lucide-react";
 import { SmartImage } from "@/components/ui/SmartImage";
 import { ButtonLink } from "@/components/ui/Button";
 import { site } from "@/lib/site";
@@ -17,12 +17,6 @@ const lineVariants = {
   }),
 };
 
-const trust = [
-  { icon: Star, label: "Vysoká úspěšnost u zkoušek" },
-  { icon: Car, label: "Výcvik v BMW X2" },
-  { icon: ShieldCheck, label: "Splátky bez navýšení" },
-];
-
 type HeroProps = {
   titleLine1?: string;
   titleLine2?: string;
@@ -31,6 +25,8 @@ type HeroProps = {
   ctaHref?: string;
   phone?: string;
   phoneHref?: string;
+  priceFrom?: string;
+  nextCourse?: string;
 };
 
 export function Hero({
@@ -41,7 +37,15 @@ export function Hero({
   ctaHref = "/cenik",
   phone = site.phone,
   phoneHref = site.phoneHref,
+  priceFrom = "17 999",
+  nextCourse = site.nextCourse,
 }: HeroProps = {}) {
+  const trust = [
+    { icon: Tag, label: `Kurzy sk. B od ${priceFrom} Kč` },
+    { icon: CalendarDays, label: `Nejbližší nástup: ${nextCourse}` },
+    { icon: Car, label: "Výcvik v BMW X2" },
+    { icon: ShieldCheck, label: "Splátky bez navýšení" },
+  ];
   return (
     <section className="relative flex min-h-dvh items-center overflow-hidden bg-dark">
       {/* photo layer (falls back to a branded panel when missing) */}
@@ -122,7 +126,7 @@ export function Hero({
           className="mt-12 flex flex-wrap gap-x-7 gap-y-3"
         >
           {trust.map((t) => (
-            <li key={t.label} className="flex items-center gap-2.5 text-sm text-white/65">
+            <li key={t.label} className="flex items-center gap-2.5 text-sm text-white/80">
               <t.icon className="h-4 w-4 text-accent-light" />
               {t.label}
             </li>

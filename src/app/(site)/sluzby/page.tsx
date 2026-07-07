@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ArrowRight, Check, Car, Scale } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ButtonLink } from "@/components/ui/Button";
@@ -8,9 +9,10 @@ import { getServicesContent } from "@/lib/content";
 import { resolveIcon } from "@/lib/icons";
 
 export const metadata: Metadata = {
-  title: "Služby",
+  title: "Kurzy a služby — řidičský průkaz sk. B a D v Liberci",
   description:
     "Kurzy skupiny B i D, rychlokurzy, kondiční jízdy, vrácení řidičského průkazu a školení řidičů. Výcvik v BMW X2 v Liberci.",
+  alternates: { canonical: "/sluzby" },
 };
 
 export default async function ServicesPage() {
@@ -51,6 +53,15 @@ export default async function ServicesPage() {
               );
             })}
           </StaggerGroup>
+          <Reveal className="mt-10 text-center">
+            <Link
+              href="/cenik"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-accent hover:text-accent-light"
+            >
+              Podívejte se na ceník všech kurzů a služeb
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Reveal>
         </div>
       </section>
 

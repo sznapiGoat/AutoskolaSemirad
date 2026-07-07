@@ -9,18 +9,19 @@ export function Footer({ settings = site }: { settings?: ResolvedSite }) {
   return (
     <footer className="relative bg-dark text-white">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent to-transparent" />
-      <div className="mx-auto max-w-container py-16 container-px">
+      {/* extra bottom padding on mobile clears the fixed call bar */}
+      <div className="mx-auto max-w-container pb-36 pt-16 container-px lg:pb-16">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-5">
             <Logo dark />
-            <p className="max-w-xs text-sm leading-relaxed text-white/55">
+            <p className="max-w-xs text-sm leading-relaxed text-white/70">
               Individuální přístup a služby šité na míru řidičům Libereckého
               kraje.
             </p>
           </div>
 
           <nav aria-label="Navigace v patičce">
-            <h3 className="mb-5 text-xs font-semibold uppercase tracking-[0.18em] text-white/40">
+            <h3 className="mb-5 text-xs font-semibold uppercase tracking-[0.18em] text-white/55">
               Navigace
             </h3>
             <ul className="space-y-3">
@@ -38,7 +39,7 @@ export function Footer({ settings = site }: { settings?: ResolvedSite }) {
           </nav>
 
           <div>
-            <h3 className="mb-5 text-xs font-semibold uppercase tracking-[0.18em] text-white/40">
+            <h3 className="mb-5 text-xs font-semibold uppercase tracking-[0.18em] text-white/55">
               Kontakt
             </h3>
             <ul className="space-y-4 text-sm text-white/70">
@@ -72,7 +73,7 @@ export function Footer({ settings = site }: { settings?: ResolvedSite }) {
           </div>
 
           <div>
-            <h3 className="mb-5 text-xs font-semibold uppercase tracking-[0.18em] text-white/40">
+            <h3 className="mb-5 text-xs font-semibold uppercase tracking-[0.18em] text-white/55">
               Provozní doba
             </h3>
             <ul className="space-y-4 text-sm text-white/70">
@@ -84,17 +85,20 @@ export function Footer({ settings = site }: { settings?: ResolvedSite }) {
                   So–Ne: {s.hours.weekend}
                 </span>
               </li>
-              <li className="text-white/45">
-                Bankovní účet
-                <br />
-                <span className="text-white/70">{s.bankAccount}</span>
-              </li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-14 border-t border-white/10 pt-6 text-xs text-white/40">
-          © {new Date().getFullYear()} {s.fullName}, {s.owner}
+        <div className="mt-14 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-white/55 sm:flex-row sm:items-center sm:justify-between">
+          <span>
+            © {new Date().getFullYear()} {s.fullName}, {s.owner}
+          </span>
+          <Link
+            href="/ochrana-osobnich-udaju"
+            className="transition-colors hover:text-white"
+          >
+            Ochrana osobních údajů
+          </Link>
         </div>
       </div>
     </footer>

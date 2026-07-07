@@ -4,7 +4,7 @@ export const packageGroups: PackageGroup[] = [
   { id: "B", title: "Skupina B", subtitle: "Osobní automobil, výcvik v BMW X2" },
   {
     id: "D",
-    title: "Skupina C, C+E a D",
+    title: "Skupina D",
     subtitle: "Autobus MAN A20, akreditované školicí středisko",
   },
 ];
@@ -189,6 +189,12 @@ export const serviceOptions = [
   "Kurz sk. D",
   "Jiné",
 ];
+
+/** Link to the contact form with the service + package preselected. */
+export function packageInterestHref(pkg: Pick<Package, "name" | "group">) {
+  const service = pkg.group === "D" ? "Kurz sk. D" : "Kurz sk. B";
+  return `/kontakt?sluzba=${encodeURIComponent(service)}&balicek=${encodeURIComponent(pkg.name)}`;
+}
 
 export const instructorLicense = "A, B, C, D, B+E, C+E, D+E";
 

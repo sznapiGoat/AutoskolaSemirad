@@ -1,5 +1,8 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { MobileCallBar } from "@/components/layout/MobileCallBar";
+import { MotionProvider } from "@/components/layout/MotionProvider";
+import { JsonLd, drivingSchoolJsonLd } from "@/components/seo/JsonLd";
 import { Toaster } from "sonner";
 import { getSiteSettings } from "@/lib/content";
 
@@ -8,10 +11,12 @@ export default async function SiteLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   const settings = await getSiteSettings();
   return (
-    <>
+    <MotionProvider>
+      <JsonLd data={drivingSchoolJsonLd(settings)} />
       <Navbar phone={settings.phone} phoneHref={settings.phoneHref} />
       <main>{children}</main>
       <Footer settings={settings} />
+      <MobileCallBar phone={settings.phone} phoneHref={settings.phoneHref} />
       <Toaster
         position="top-center"
         toastOptions={{
@@ -22,6 +27,6 @@ export default async function SiteLayout({
           },
         }}
       />
-    </>
+    </MotionProvider>
   );
 }

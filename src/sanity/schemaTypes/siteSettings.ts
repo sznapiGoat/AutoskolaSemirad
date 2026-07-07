@@ -44,6 +44,14 @@ export const siteSettings = defineType({
       ],
     }),
     defineField({ name: "mapQuery", title: "Adresa pro mapu", type: "string", group: "contact" }),
+    defineField({
+      name: "nextCourse",
+      title: "Nejbližší nástup do kurzu",
+      description:
+        "Zobrazuje se v úvodní sekci webu a na kontaktu, např. „15. srpna 2026“ nebo „ihned po domluvě“.",
+      type: "string",
+      group: "contact",
+    }),
   ],
   preview: { prepare: () => ({ title: "Nastavení webu" }) },
 });

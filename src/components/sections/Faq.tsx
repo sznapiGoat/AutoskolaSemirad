@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { Plus } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
@@ -64,21 +63,22 @@ export function Faq({
                     <Plus className="h-4 w-4" />
                   </span>
                 </button>
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
-                      className="overflow-hidden"
+                {/* Answers stay in the DOM (crawlable) and collapse via CSS. */}
+                <div
+                  className="grid transition-[grid-template-rows] duration-300 ease-out"
+                  style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
+                >
+                  <div className="overflow-hidden">
+                    <p
+                      className={cn(
+                        "px-6 pb-6 pr-12 text-sm leading-relaxed text-ink-muted transition-opacity duration-300",
+                        isOpen ? "opacity-100" : "opacity-0",
+                      )}
                     >
-                      <p className="px-6 pb-6 pr-12 text-sm leading-relaxed text-ink-muted">
-                        {item.a}
-                      </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                      {item.a}
+                    </p>
+                  </div>
+                </div>
               </div>
             );
           })}

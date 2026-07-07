@@ -12,6 +12,8 @@ import { SmartImage } from "@/components/ui/SmartImage";
 import { Marquee } from "@/components/ui/Marquee";
 import { getHomeContent, getPricingContent, getSiteSettings } from "@/lib/content";
 import { resolveIcon } from "@/lib/icons";
+import { faqs, packageInterestHref } from "@/lib/data";
+import { JsonLd, faqJsonLd } from "@/components/seo/JsonLd";
 
 export default async function Home() {
   const [content, pricing, settings] = await Promise.all([
@@ -20,9 +22,16 @@ export default async function Home() {
     getSiteSettings(),
   ]);
   const featured = pricing.packages.filter((p) => p.group === "B").slice(1, 4);
+  const priceFrom = Math.min(
+    ...pricing.packages
+      .filter((p) => p.group === "B")
+      .map((p) => parseInt(p.price.replace(/\D/g, ""), 10))
+      .filter((n) => Number.isFinite(n)),
+  ).toLocaleString("cs-CZ");
 
   return (
     <>
+      <JsonLd data={faqJsonLd(faqs)} />
       <Hero
         titleLine1={content.hero.titleLine1}
         titleLine2={content.hero.titleLine2}
@@ -31,6 +40,8 @@ export default async function Home() {
         ctaHref={content.hero.ctaHref}
         phone={settings.phone}
         phoneHref={settings.phoneHref}
+        priceFrom={priceFrom}
+        nextCourse={settings.nextCourse}
       />
       <Stats items={content.stats} />
 
@@ -79,7 +90,7 @@ export default async function Home() {
               width={880}
               height={620}
               sizes="(min-width: 1024px) 50vw, 100vw"
-              className="aspect-[7/5] w-full -scale-x-100 rounded-2xl object-cover"
+              className="aspect-[7/5] w-full rounded-2xl object-cover"
             />
             <SmartImage
               src="/images/bmw-x2-interior.jpg"
@@ -155,7 +166,7 @@ export default async function Home() {
                 <p
                   className={
                     "mt-2 text-sm leading-relaxed " +
-                    (pkg.highlight ? "text-white/60" : "text-ink-muted")
+                    (pkg.highlight ? "text-white/75" : "text-ink-muted")
                   }
                 >
                   {pkg.description}
@@ -181,7 +192,7 @@ export default async function Home() {
                 </ul>
                 <div className="mt-8">
                   <ButtonLink
-                    href="/kontakt"
+                    href={packageInterestHref(pkg)}
                     variant={pkg.highlight ? "ghostDark" : "outline"}
                     className="w-full"
                   >

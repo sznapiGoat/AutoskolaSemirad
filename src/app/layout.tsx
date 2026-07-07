@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import { site } from "@/lib/site";
 
@@ -19,18 +20,14 @@ const sans = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(site.webHref),
   title: {
-    default: "Autoškola Royal Cars Liberec | Mgr. Josef Semirád",
-    template: "%s | Royal Cars Liberec",
+    default: "Autoškola Liberec — Royal Cars | Řidičák sk. B v BMW X2",
+    template: "%s | Autoškola Royal Cars Liberec",
   },
   description:
-    "Jiná liga autoškol v Liberci. Individuální přístup, výcvik v BMW X2 a vysoká úspěšnost u zkoušek. Začít můžete ihned.",
-  keywords: [
-    "autoškola Liberec",
-    "řidičský průkaz Liberec",
-    "Royal Cars",
-    "autoškola BMW",
-    "rychlokurz Liberec",
-  ],
+    "Jiná liga autoškol v Liberci. Individuální přístup, výcvik v BMW X2 a vysoká úspěšnost u zkoušek. Řidičák sk. B od 17 999 Kč, splátky bez navýšení.",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Autoškola Royal Cars Liberec",
     description:
@@ -65,6 +62,7 @@ export default function RootLayout({
     <html lang="cs" className={`${display.variable} ${sans.variable}`}>
       <body className="min-h-dvh bg-bg font-sans text-ink antialiased">
         {children}
+        <Analytics />
       </body>
     </html>
   );

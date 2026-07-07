@@ -1,5 +1,14 @@
 import type { Metadata } from "next";
-import { Phone, Mail, MapPin, Clock, Building2 } from "lucide-react";
+import { Suspense } from "react";
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Clock,
+  Building2,
+  CalendarDays,
+  FileDown,
+} from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { SmartImage } from "@/components/ui/SmartImage";
@@ -7,9 +16,10 @@ import { ContactForm } from "@/components/sections/ContactForm";
 import { getContactContent, getSiteSettings } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Kontakt",
+  title: "Kontakt a přihláška do autoškoly Liberec",
   description:
-    "Kontaktujte autoškolu Royal Cars Liberec, Mgr. Josef Semirád. Telefon, e-mail, adresa učebny a online poptávkový formulář.",
+    "Kontaktujte autoškolu Royal Cars Liberec, Mgr. Josef Semirád. Telefon, e-mail, adresa učebny, přihláška ke stažení a online poptávkový formulář.",
+  alternates: { canonical: "/kontakt" },
 };
 
 export default async function ContactPage() {
@@ -104,10 +114,20 @@ export default async function ContactPage() {
               </li>
               <li className="flex items-start gap-4">
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent">
+                  <CalendarDays className="h-5 w-5" />
+                </span>
+                <span className="text-ink">
+                  Nejbližší nástup do kurzu
+                  <br />
+                  <span className="font-semibold">{s.nextCourse}</span>
+                </span>
+              </li>
+              <li className="flex items-start gap-4">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent">
                   <Building2 className="h-5 w-5" />
                 </span>
                 <span className="text-ink">
-                  Bankovní účet
+                  Platba kurzovného (č. ú.)
                   <br />
                   <span className="text-ink-muted">{s.bankAccount}</span>
                 </span>
@@ -122,8 +142,71 @@ export default async function ContactPage() {
             </h3>
             <p className="mt-1.5 text-sm text-ink-muted">{content.formSubtext}</p>
             <div className="mt-7">
-              <ContactForm />
+              <Suspense fallback={null}>
+                <ContactForm />
+              </Suspense>
             </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* How to enroll */}
+      <section className="bg-dark text-white">
+        <div className="mx-auto max-w-container py-16 container-px sm:py-20">
+          <SectionHeading
+            dark
+            eyebrow="Jak se přihlásit"
+            title="Tři kroky k nástupu do kurzu"
+            description="K zahájení výcviku potřebujete dva vyplněné dokumenty. Vše ostatní vyřídíme společně na učebně."
+          />
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            {[
+              {
+                n: "01",
+                title: "Ozvěte se nám",
+                text: "Zavolejte nebo vyplňte formulář výše. Domluvíme balíček a termín nástupu.",
+              },
+              {
+                n: "02",
+                title: "Připravte si dokumenty",
+                text: "Stáhněte a vyplňte žádost o přijetí k výuce a nechte si lékařem potvrdit posudek o zdravotní způsobilosti.",
+              },
+              {
+                n: "03",
+                title: "Přineste je na učebnu",
+                text: "Dokumenty od vás převezmeme při první návštěvě a můžete rovnou začít s teorií.",
+              },
+            ].map((step) => (
+              <Reveal key={step.n} className="rounded-2xl border border-white/10 bg-dark-card p-7">
+                <span className="font-display text-4xl font-bold text-accent/40">
+                  {step.n}
+                </span>
+                <h3 className="mt-3 font-display text-lg font-semibold">{step.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-white/70">{step.text}</p>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal className="mt-8 flex flex-col gap-4 sm:flex-row">
+            <a
+              href="/dokumenty/zadost-o-prijeti-k-vyuce.pdf"
+              download
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition-colors hover:border-white/40"
+            >
+              <FileDown className="h-4 w-4 text-accent-light" />
+              Žádost o přijetí k výuce (PDF)
+            </a>
+            <a
+              href="/dokumenty/lekarsky-posudek.pdf"
+              download
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition-colors hover:border-white/40"
+            >
+              <FileDown className="h-4 w-4 text-accent-light" />
+              Posudek o zdravotní způsobilosti (PDF)
+            </a>
+          </Reveal>
+          <Reveal className="mt-5 text-sm text-white/60">
+            Řidičák na osobní auto můžete začít dělat už v 17 letech (zkoušku
+            skládáte nejdříve v den 17. narozenin, do 18 let jezdíte s mentorem).
           </Reveal>
         </div>
       </section>

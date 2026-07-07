@@ -7,6 +7,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { PostBody } from "@/components/sections/PostBody";
 import { getPost, getPostSlugs } from "@/lib/content";
 import { urlForImage } from "@/sanity/image";
+import { JsonLd, articleJsonLd } from "@/components/seo/JsonLd";
 
 type Params = { params: { slug: string } };
 
@@ -21,6 +22,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   return {
     title: post.title,
     description: post.excerpt,
+    alternates: { canonical: `/aktuality/${post.slug}` },
   };
 }
 
@@ -40,6 +42,15 @@ export default async function PostPage({ params }: Params) {
 
   return (
     <article className="bg-bg">
+      <JsonLd
+        data={articleJsonLd({
+          title: post.title,
+          slug: post.slug,
+          publishedAt: post.publishedAt,
+          excerpt: post.excerpt,
+          coverUrl: cover,
+        })}
+      />
       {/* Header */}
       <header className="bg-dark pt-32 text-white">
         <div className="mx-auto max-w-3xl pb-14 container-px">

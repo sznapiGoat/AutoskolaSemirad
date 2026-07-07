@@ -17,6 +17,8 @@ export const site = {
     weekend: "po dohodě",
   },
   mapQuery: "Hodkovická 102, 463 12 Liberec",
+  /** Free text shown in the hero and on kontakt, editable in Sanity. */
+  nextCourse: "ihned po domluvě",
 };
 
 export const nav = [

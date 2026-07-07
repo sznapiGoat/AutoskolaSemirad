@@ -180,6 +180,7 @@ type SiteSettingsDoc = {
   address?: { street?: string; city?: string };
   hours?: { weekdays?: string; weekend?: string };
   mapQuery?: string;
+  nextCourse?: string;
 };
 
 export type ResolvedSite = {
@@ -195,6 +196,7 @@ export type ResolvedSite = {
   address: { street: string; city: string };
   hours: { weekdays: string; weekend: string };
   mapQuery: string;
+  nextCourse: string;
 };
 
 function telHref(phone: string) {
@@ -226,6 +228,7 @@ export async function getSiteSettings(): Promise<ResolvedSite> {
       weekend: pick(doc?.hours?.weekend, site.hours.weekend),
     },
     mapQuery: pick(doc?.mapQuery, site.mapQuery),
+    nextCourse: pick(doc?.nextCourse, site.nextCourse),
   };
 }
 

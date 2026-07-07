@@ -50,7 +50,7 @@ export const aboutQuery = groq`*[_type == "homePage"][0]{
 
 export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]{
   name, fullName, owner, phone, email, web, bankAccount,
-  address{ street, city }, hours{ weekdays, weekend }, mapQuery
+  address{ street, city }, hours{ weekdays, weekend }, mapQuery, nextCourse
 }`;
 
 export const postsQuery = groq`*[_type == "post" && !(_id in path("drafts.**"))]

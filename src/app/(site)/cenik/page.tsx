@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { ArrowRight, Check, Snowflake, GraduationCap } from "lucide-react";
+import { ArrowRight, Check, Snowflake, GraduationCap, Phone } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ButtonLink } from "@/components/ui/Button";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/ui/Reveal";
 import { Faq } from "@/components/sections/Faq";
-import { getPricingContent } from "@/lib/content";
-import { type Package } from "@/lib/data";
+import { getPricingContent, getSiteSettings } from "@/lib/content";
+import { packageInterestHref, type Package } from "@/lib/data";
+import { JsonLd, faqJsonLd } from "@/components/seo/JsonLd";
 
 function PackageCard({ pkg }: { pkg: Package }) {
   return (
@@ -31,7 +32,7 @@ function PackageCard({ pkg }: { pkg: Package }) {
       <p
         className={
           "mt-2 text-sm leading-relaxed " +
-          (pkg.highlight ? "text-white/60" : "text-ink-muted")
+          (pkg.highlight ? "text-white/75" : "text-ink-muted")
         }
       >
         {pkg.description}
@@ -55,7 +56,7 @@ function PackageCard({ pkg }: { pkg: Package }) {
       </ul>
       <div className="mt-8">
         <ButtonLink
-          href="/kontakt"
+          href={packageInterestHref(pkg)}
           variant={pkg.highlight ? "ghostDark" : "outline"}
           className="w-full"
         >
@@ -67,17 +68,22 @@ function PackageCard({ pkg }: { pkg: Package }) {
 }
 
 export const metadata: Metadata = {
-  title: "Ceník",
+  title: "Ceník autoškoly Liberec — řidičák sk. B od 17 999 Kč",
   description:
-    "Ceník kurzů autoškoly Royal Cars Liberec: skupina B, VIP balíčky, kondiční jízdy a doplňkové služby. Splátky bez navýšení.",
+    "Ceník kurzů autoškoly Royal Cars Liberec: skupina B od 17 999 Kč, VIP balíčky, kurz sk. D, kondiční jízdy a doplňkové služby. Splátky bez navýšení.",
+  alternates: { canonical: "/cenik" },
 };
 
 export default async function PricingPage() {
-  const content = await getPricingContent();
+  const [content, settings] = await Promise.all([
+    getPricingContent(),
+    getSiteSettings(),
+  ]);
   const { skid, instructorTraining, addOns } = content;
 
   return (
     <>
+      <JsonLd data={faqJsonLd(content.faq.items)} />
       {/* Header */}
       <section className="bg-dark pt-32 text-white">
         <div className="mx-auto max-w-container pb-16 container-px">
@@ -131,7 +137,7 @@ export default async function PricingPage() {
                 <Snowflake className="h-6 w-6" />
               </span>
               <h3 className="mt-5 font-display text-xl font-bold">{skid.title}</h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-white/60">
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-white/75">
                 {skid.description}
               </p>
               <ul className="mt-6 space-y-3">
@@ -148,7 +154,11 @@ export default async function PricingPage() {
                 ))}
               </ul>
               <div className="mt-7">
-                <ButtonLink href="/kontakt" variant="ghostDark" className="w-full">
+                <ButtonLink
+                  href={`/kontakt?sluzba=Jin%C3%A9&balicek=${encodeURIComponent(skid.title)}`}
+                  variant="ghostDark"
+                  className="w-full"
+                >
                   Mám zájem
                 </ButtonLink>
               </div>
@@ -165,7 +175,7 @@ export default async function PricingPage() {
               <h3 className="mt-5 font-display text-xl font-bold">
                 {instructorTraining.title}
               </h3>
-              <p className="mt-2 text-sm leading-relaxed text-white/60">
+              <p className="mt-2 text-sm leading-relaxed text-white/75">
                 {instructorTraining.description}
               </p>
               <ul className="mt-6 flex-1 divide-y divide-white/10">
@@ -238,10 +248,17 @@ export default async function PricingPage() {
             </h2>
           </Reveal>
           <Reveal delay={0.08} className="max-w-xl text-white/85">
-            Napište nám, o který balíček máte zájem, a domluvíme se na termínu
-            nástupu.
+            Zavolejte nám, nebo napište, o který balíček máte zájem, a domluvíme
+            se na termínu nástupu. Nejbližší nástup: {settings.nextCourse}.
           </Reveal>
-          <Reveal delay={0.16}>
+          <Reveal delay={0.16} className="flex flex-col items-center gap-4 sm:flex-row">
+            <a
+              href={settings.phoneHref}
+              className="inline-flex items-center gap-3 rounded-full bg-white px-6 py-3 text-sm font-semibold text-accent shadow-card transition-transform hover:-translate-y-0.5"
+            >
+              <Phone className="h-4 w-4" />
+              {settings.phone}
+            </a>
             <ButtonLink href="/kontakt" variant="ghostDark">
               Přihlásit se do kurzu
               <ArrowRight className="h-4 w-4" />
