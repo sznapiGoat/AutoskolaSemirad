@@ -18,7 +18,7 @@ import { getContactContent, getSiteSettings } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Kontakt a přihláška do autoškoly Liberec",
   description:
-    "Kontaktujte autoškolu Royal Cars Liberec, Mgr. Josef Semirád. Telefon, e-mail, adresa učebny, přihláška ke stažení a online poptávkový formulář.",
+    "Kontaktujte autoškolu Royal Cars Liberec, Mgr. Bc. Josef Semirád. Telefon, e-mail, adresa učebny, přihláška ke stažení a online poptávkový formulář.",
   alternates: { canonical: "/kontakt" },
 };
 

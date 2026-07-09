@@ -1,7 +1,7 @@
 export const site = {
   name: "Royal Cars",
   fullName: "Autoškola Royal Cars Liberec",
-  owner: "Mgr. Josef Semirád",
+  owner: "Mgr. Bc. Josef Semirád",
   phone: "775 444 443",
   phoneHref: "tel:+420775444443",
   email: "info@sumi-lbc.cz",
