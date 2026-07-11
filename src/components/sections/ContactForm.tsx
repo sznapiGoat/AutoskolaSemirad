@@ -15,7 +15,7 @@ import { site } from "@/lib/site";
 type FormValues = ContactValues;
 
 const fieldBase =
-  "w-full rounded-xl border bg-white px-4 py-3 text-sm text-ink transition-colors placeholder:text-ink-muted/70 focus:outline-none focus:ring-2 focus:ring-accent/40";
+  "w-full rounded-xl border bg-white px-4 py-2.5 text-sm text-ink transition-colors placeholder:text-ink-muted/70 focus:outline-none focus:ring-2 focus:ring-accent/40";
 
 export function ContactForm() {
   const {
@@ -65,10 +65,10 @@ export function ContactForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-5" noValidate>
-      <div className="grid gap-5 sm:grid-cols-2">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
+      <div className="grid gap-4 sm:grid-cols-2">
         <div>
-          <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-ink">
+          <label htmlFor="name" className="mb-1 block text-sm font-medium text-ink">
             Jméno a příjmení *
           </label>
           <input
@@ -80,12 +80,12 @@ export function ContactForm() {
             {...register("name")}
           />
           {errors.name && (
-            <p className="mt-1.5 text-xs text-accent">{errors.name.message}</p>
+            <p className="mt-1 text-xs text-accent">{errors.name.message}</p>
           )}
         </div>
 
         <div>
-          <label htmlFor="phone" className="mb-1.5 block text-sm font-medium text-ink">
+          <label htmlFor="phone" className="mb-1 block text-sm font-medium text-ink">
             Telefon *
           </label>
           <input
@@ -97,14 +97,11 @@ export function ContactForm() {
             {...register("phone")}
           />
           {errors.phone && (
-            <p className="mt-1.5 text-xs text-accent">{errors.phone.message}</p>
+            <p className="mt-1 text-xs text-accent">{errors.phone.message}</p>
           )}
         </div>
-      </div>
-
-      <div className="grid gap-5 sm:grid-cols-2">
         <div>
-          <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-ink">
+          <label htmlFor="email" className="mb-1 block text-sm font-medium text-ink">
             E-mail
           </label>
           <input
@@ -116,12 +113,12 @@ export function ContactForm() {
             {...register("email")}
           />
           {errors.email && (
-            <p className="mt-1.5 text-xs text-accent">{errors.email.message}</p>
+            <p className="mt-1 text-xs text-accent">{errors.email.message}</p>
           )}
         </div>
 
         <div>
-          <label htmlFor="service" className="mb-1.5 block text-sm font-medium text-ink">
+          <label htmlFor="service" className="mb-1 block text-sm font-medium text-ink">
             Mám zájem o *
           </label>
           <select
@@ -140,43 +137,45 @@ export function ContactForm() {
             ))}
           </select>
           {errors.service && (
-            <p className="mt-1.5 text-xs text-accent">{errors.service.message}</p>
+            <p className="mt-1 text-xs text-accent">{errors.service.message}</p>
           )}
         </div>
       </div>
 
       <div>
-        <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-ink">
+        <label htmlFor="message" className="mb-1 block text-sm font-medium text-ink">
           Zpráva
         </label>
         <textarea
           id="message"
-          rows={4}
+          rows={3}
           placeholder="Napište nám, co potřebujete…"
           className={cn(fieldBase, "resize-none border-line")}
           {...register("message")}
         />
       </div>
 
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent px-7 py-3.5 text-sm font-semibold tracking-wide text-white shadow-[0_8px_24px_rgba(214,0,15,0.25)] transition-all duration-200 hover:bg-accent-light hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
-      >
-        {isSubmitting ? "Odesílám…" : "Odeslat poptávku"}
-        <Send className="h-4 w-4" />
-      </button>
-
-      <p className="text-xs leading-relaxed text-ink-muted">
-        Odesláním formuláře berete na vědomí{" "}
-        <Link
-          href="/ochrana-osobnich-udaju"
-          className="underline underline-offset-2 transition-colors hover:text-accent"
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-5">
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="inline-flex w-full shrink-0 items-center justify-center gap-2 rounded-full bg-accent px-7 py-3 text-sm font-semibold tracking-wide text-white shadow-[0_8px_24px_rgba(214,0,15,0.25)] transition-all duration-200 hover:bg-accent-light hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
         >
-          zásady zpracování osobních údajů
-        </Link>
-        .
-      </p>
+          {isSubmitting ? "Odesílám…" : "Odeslat poptávku"}
+          <Send className="h-4 w-4" />
+        </button>
+
+        <p className="text-xs leading-relaxed text-ink-muted">
+          Odesláním formuláře berete na vědomí{" "}
+          <Link
+            href="/ochrana-osobnich-udaju"
+            className="underline underline-offset-2 transition-colors hover:text-accent"
+          >
+            zásady zpracování osobních údajů
+          </Link>
+          .
+        </p>
+      </div>
     </form>
   );
 }
