@@ -1,6 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useReducedMotion,
+} from "framer-motion";
+import { Fragment, useRef } from "react";
 import { Phone, ArrowRight, ShieldCheck, Car, CalendarDays, Tag } from "lucide-react";
 import { SmartImage } from "@/components/ui/SmartImage";
 import { ButtonLink } from "@/components/ui/Button";
@@ -16,6 +22,47 @@ const lineVariants = {
     transition: { duration: 0.7, ease: easeOut, delay: 0.15 + i * 0.1 },
   }),
 };
+
+const wordVariants = {
+  hidden: { opacity: 0, y: 26, filter: "blur(10px)" },
+  show: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.65, ease: easeOut, delay: 0.15 + i * 0.09 },
+  }),
+};
+
+/** Splits a headline line into words that reveal one by one. */
+function StaggeredWords({
+  text,
+  startIndex,
+  wordClassName,
+}: {
+  text: string;
+  startIndex: number;
+  wordClassName?: string;
+}) {
+  const words = text.split(" ");
+  return (
+    <span className="block">
+      {words.map((word, i) => (
+        <Fragment key={`${word}-${i}`}>
+          <motion.span
+            custom={startIndex + i}
+            variants={wordVariants}
+            initial="hidden"
+            animate="show"
+            className={`inline-block will-change-transform ${wordClassName ?? ""}`}
+          >
+            {word}
+          </motion.span>
+          {i < words.length - 1 ? " " : null}
+        </Fragment>
+      ))}
+    </span>
+  );
+}
 
 type HeroProps = {
   titleLine1?: string;
@@ -40,16 +87,39 @@ export function Hero({
   priceFrom = "17 999",
   nextCourse = site.nextCourse,
 }: HeroProps = {}) {
+  const sectionRef = useRef<HTMLElement>(null);
+  const reduceMotion = useReducedMotion();
+
+  // scroll-away parallax: content drifts up and fades as the hero leaves
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, 110]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.75], [1, 0.15]);
+  const photoY = useTransform(scrollYProgress, [0, 1], [0, 48]);
+
   const trust = [
     { icon: Tag, label: `Kurzy sk. B od ${priceFrom} Kč` },
     { icon: CalendarDays, label: `Nejbližší nástup: ${nextCourse}` },
     { icon: Car, label: "Výcvik v BMW X2" },
     { icon: ShieldCheck, label: "Splátky bez navýšení" },
   ];
+  const line1Words = titleLine1.split(" ").length;
+
   return (
-    <section className="relative flex min-h-dvh items-center overflow-hidden bg-dark">
-      {/* photo layer (falls back to a branded panel when missing) */}
-      <div className="absolute inset-0">
+    <section
+      ref={sectionRef}
+      className="relative flex min-h-dvh items-center overflow-hidden bg-dark"
+    >
+      {/* photo layer with slow Ken Burns zoom (falls back to a branded panel when missing) */}
+      <motion.div
+        className="absolute inset-0 will-change-transform"
+        style={reduceMotion ? undefined : { y: photoY }}
+        initial={{ scale: 1 }}
+        animate={{ scale: 1.07 }}
+        transition={{ duration: 19, ease: "linear" }}
+      >
         <SmartImage
           src="/images/hero.jpg"
           alt="BMW X2 autoškoly Royal Cars v Liberci"
@@ -59,7 +129,7 @@ export function Hero({
           sizes="100vw"
           className="object-cover opacity-70"
         />
-      </div>
+      </motion.div>
 
       {/* animated brand field */}
       <div className="pointer-events-none absolute inset-0">
@@ -70,20 +140,17 @@ export function Hero({
         <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-dark to-transparent" />
       </div>
 
-      <div className="relative mx-auto w-full max-w-container pb-20 pt-32 container-px">
+      <motion.div
+        style={reduceMotion ? undefined : { y: contentY, opacity: contentOpacity }}
+        className="relative mx-auto w-full max-w-container pb-20 pt-32 container-px"
+      >
         <h1 className="max-w-4xl font-display text-5xl font-bold leading-[0.95] tracking-tight text-white sm:text-6xl lg:text-[5.25rem]">
-          <motion.span custom={0} variants={lineVariants} initial="hidden" animate="show" className="block">
-            {titleLine1}
-          </motion.span>
-          <motion.span
-            custom={1}
-            variants={lineVariants}
-            initial="hidden"
-            animate="show"
-            className="block bg-gradient-to-r from-accent-light via-accent to-accent-light bg-clip-text text-transparent"
-          >
-            {titleLine2}
-          </motion.span>
+          <StaggeredWords text={titleLine1} startIndex={0} />
+          <StaggeredWords
+            text={titleLine2}
+            startIndex={line1Words}
+            wordClassName="bg-gradient-to-r from-accent-light via-accent to-accent-light bg-clip-text text-transparent"
+          />
         </h1>
 
         <motion.p
@@ -132,7 +199,7 @@ export function Hero({
             </li>
           ))}
         </motion.ul>
-      </div>
+      </motion.div>
 
       {/* scroll cue */}
       <motion.div

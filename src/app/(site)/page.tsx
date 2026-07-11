@@ -3,12 +3,13 @@ import { ArrowRight, Check, Sparkles } from "lucide-react";
 import { Hero } from "@/components/sections/Hero";
 import { Stats } from "@/components/sections/Stats";
 import { About } from "@/components/sections/About";
+import { VehicleGallery } from "@/components/sections/VehicleGallery";
+import { Spotlight } from "@/components/ui/Spotlight";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { Faq } from "@/components/sections/Faq";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ButtonLink } from "@/components/ui/Button";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/ui/Reveal";
-import { SmartImage } from "@/components/ui/SmartImage";
 import { Marquee } from "@/components/ui/Marquee";
 import { getHomeContent, getPricingContent, getSiteSettings } from "@/lib/content";
 import { resolveIcon } from "@/lib/icons";
@@ -82,26 +83,7 @@ export default async function Home() {
       {/* Vehicle showcase */}
       <section className="bg-dark text-white">
         <div className="mx-auto grid max-w-container items-center gap-12 py-20 container-px sm:py-28 lg:grid-cols-2">
-          <Reveal className="space-y-4">
-            <SmartImage
-              src="/images/bmw-x2.jpg"
-              alt="BMW X2 autoškoly Royal Cars"
-              label="BMW X2 exteriér"
-              width={880}
-              height={620}
-              sizes="(min-width: 1024px) 50vw, 100vw"
-              className="aspect-[7/5] w-full rounded-2xl object-cover"
-            />
-            <SmartImage
-              src="/images/bmw-x2-interior.jpg"
-              alt="Červený interiér BMW X2"
-              label="BMW X2 interiér"
-              width={880}
-              height={420}
-              sizes="(min-width: 1024px) 50vw, 100vw"
-              className="aspect-[16/7] w-full rounded-2xl object-cover"
-            />
-          </Reveal>
+          <VehicleGallery />
           <div>
             <SectionHeading
               dark
@@ -232,6 +214,7 @@ export default async function Home() {
         <div className="grid-texture absolute inset-0 opacity-40" />
         <div className="absolute -left-20 -top-24 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
         <div className="absolute -bottom-28 -right-16 h-80 w-80 rounded-full bg-accent-muted/40 blur-3xl" />
+        <Spotlight />
         <div className="relative mx-auto flex max-w-container flex-col items-center gap-6 py-16 text-center container-px sm:py-20">
           <Reveal>
             <h2 className="font-display text-3xl font-bold tracking-tight text-white text-balance sm:text-4xl">
