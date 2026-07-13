@@ -13,9 +13,11 @@ import { ButtonLink } from "@/components/ui/Button";
 export function Navbar({
   phone = site.phone,
   phoneHref = site.phoneHref,
+  logoUrl = null,
 }: {
   phone?: string;
   phoneHref?: string;
+  logoUrl?: string | null;
 } = {}) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -55,7 +57,7 @@ export function Navbar({
       )}
     >
       <nav className="mx-auto flex h-[72px] max-w-container items-center justify-between container-px">
-        <Logo />
+        <Logo logoUrl={logoUrl} />
 
         <div className="hidden items-center gap-1 lg:flex">
           {nav.map((item) => {

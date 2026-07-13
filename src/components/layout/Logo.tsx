@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-export function Logo({ dark = false }: { dark?: boolean }) {
+export function Logo({ dark = false, logoUrl = null }: { dark?: boolean; logoUrl?: string | null }) {
   return (
     <Link
       href="/"
@@ -10,7 +10,7 @@ export function Logo({ dark = false }: { dark?: boolean }) {
       aria-label="Royal Cars Liberec, domů"
     >
       <Image
-        src="/images/logo-mark.png"
+        src={logoUrl ?? "/images/logo-mark.png"}
         alt=""
         width={369}
         height={252}

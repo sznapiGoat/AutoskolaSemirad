@@ -13,7 +13,7 @@ export function Footer({ settings = site }: { settings?: ResolvedSite }) {
       <div className="mx-auto max-w-container pb-36 pt-16 container-px lg:pb-16">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-5">
-            <Logo dark />
+            <Logo dark logoUrl={s.logoUrl} />
             <p className="max-w-xs text-sm leading-relaxed text-white/70">
               Individuální přístup a služby šité na míru řidičům Libereckého
               kraje.

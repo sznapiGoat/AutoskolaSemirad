@@ -74,6 +74,7 @@ type HeroProps = {
   phoneHref?: string;
   priceFrom?: string;
   nextCourse?: string;
+  image?: string;
 };
 
 export function Hero({
@@ -86,6 +87,7 @@ export function Hero({
   phoneHref = site.phoneHref,
   priceFrom = "17 999",
   nextCourse = site.nextCourse,
+  image = "/images/hero.jpg",
 }: HeroProps = {}) {
   const sectionRef = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
@@ -121,7 +123,7 @@ export function Hero({
         transition={{ duration: 19, ease: "linear" }}
       >
         <SmartImage
-          src="/images/hero.jpg"
+          src={image}
           alt="BMW X2 autoškoly Royal Cars v Liberci"
           label="BMW X2 exteriér"
           fill

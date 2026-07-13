@@ -24,7 +24,7 @@ export async function About() {
           {/* instructor photo */}
           <Reveal>
             <SmartImage
-              src="/images/instructor.jpg"
+              src={c.image}
               alt={`${c.instructorName}, lektor autoškoly Royal Cars`}
               label={c.instructorName}
               width={760}

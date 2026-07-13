@@ -8,6 +8,7 @@ export const site = {
   web: "autoskola-semirad.vercel.app",
   webHref: "https://autoskola-semirad.vercel.app",
   bankAccount: "4174001044/5500",
+  logoUrl: null as string | null,
   address: {
     street: "Hodkovická 102, Doubí",
     city: "463 12 Liberec",

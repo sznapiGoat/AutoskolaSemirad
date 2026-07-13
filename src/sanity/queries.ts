@@ -11,10 +11,10 @@ export const pricingPageQuery = groq`*[_type == "pricingPage"][0]{
 }`;
 
 export const homePageQuery = groq`*[_type == "homePage"][0]{
-  heroTitleLine1, heroTitleLine2, heroSubtitle, heroCtaLabel, heroCtaHref,
+  heroTitleLine1, heroTitleLine2, heroSubtitle, heroCtaLabel, heroCtaHref, heroImage,
   stats[]{ value, prefix, suffix, label },
   whyEyebrow, whyTitle, whyDescription, features[]{ icon, title, text },
-  vehicleEyebrow, vehicleTitle, vehicleDescription, vehicleSpecs,
+  vehicleEyebrow, vehicleTitle, vehicleDescription, vehicleSpecs, vehicleImage, vehicleInteriorImage,
   marquee,
   packagesEyebrow, packagesTitle, packagesDescription,
   testimonialsEyebrow, testimonialsTitle, testimonialsDescription,
@@ -26,7 +26,7 @@ export const homePageQuery = groq`*[_type == "homePage"][0]{
 export const servicesPageQuery = groq`*[_type == "servicesPage"][0]{
   headerEyebrow, headerTitle, headerDescription,
   services[]{ icon, title, text },
-  vehicleEyebrow, vehicleTitle, vehicleDescription, vehicleSpecs,
+  vehicleEyebrow, vehicleTitle, vehicleDescription, vehicleSpecs, vehicleImage,
   consultingEyebrow, consultingTitle, consultingDescription, consultingAreas,
   stepsEyebrow, stepsTitle, steps[]{ n, title, text },
   cta{ title, text, ctaLabel, ctaHref }
@@ -34,14 +34,14 @@ export const servicesPageQuery = groq`*[_type == "servicesPage"][0]{
 
 export const contactPageQuery = groq`*[_type == "contactPage"][0]{
   headerEyebrow, headerTitle, headerDescription,
-  instructorName, instructorRole, infoSubtext,
+  instructorImage, instructorName, instructorRole, infoSubtext,
   formHeading, formSubtext,
-  showroomEyebrow, showroomTitle, showroomDescription
+  showroomEyebrow, showroomTitle, showroomDescription, showroomImage
 }`;
 
 export const aboutQuery = groq`*[_type == "homePage"][0]{
   aboutEyebrow, aboutTitle, aboutDescription, aboutPoints,
-  aboutInstructorName, aboutInstructorRole,
+  aboutInstructorName, aboutInstructorRole, aboutImage,
   aboutHighlights[]{ value, label },
   aboutLicense,
   aboutExpertiseTitle, aboutExpertiseText, aboutExpertise,
@@ -49,7 +49,7 @@ export const aboutQuery = groq`*[_type == "homePage"][0]{
 }`;
 
 export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]{
-  name, fullName, owner, phone, email, web, bankAccount,
+  name, fullName, owner, phone, email, web, bankAccount, logo,
   address{ street, city }, hours{ weekdays, weekend }, mapQuery, nextCourse
 }`;
 

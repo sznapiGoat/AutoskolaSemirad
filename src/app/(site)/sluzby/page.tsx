@@ -71,7 +71,7 @@ export default async function ServicesPage() {
         <div className="mx-auto grid max-w-container items-center gap-12 py-20 container-px sm:py-24 lg:grid-cols-2">
           <Reveal>
             <SmartImage
-              src="/images/bmw-x2-interior.jpg"
+              src={content.vehicle.image}
               alt="Červený interiér výcvikového BMW X2"
               label="BMW X2 interiér"
               width={880}

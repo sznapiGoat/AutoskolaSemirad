@@ -32,6 +32,7 @@ import {
   type Testimonial,
 } from "@/lib/data";
 import { site } from "@/lib/site";
+import { urlForImage } from "@/sanity/image";
 import type { PortableTextBlock } from "@portabletext/types";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
@@ -41,6 +42,11 @@ function pick<T>(value: T | null | undefined, fallback: T): T {
   if (Array.isArray(value) && value.length === 0) return fallback;
   if (typeof value === "string" && value.trim() === "") return fallback;
   return value;
+}
+
+/** Resolves a Sanity image field to a CDN URL, or falls back to a static /public path. */
+function pickImage(source: SanityImageSource | null | undefined, fallback: string): string {
+  return urlForImage(source)?.url() ?? fallback;
 }
 
 type PricingDoc = {
@@ -121,6 +127,7 @@ type AboutDoc = {
   aboutPoints?: string[];
   aboutInstructorName?: string;
   aboutInstructorRole?: string;
+  aboutImage?: SanityImageSource;
   aboutHighlights?: { value: string; label: string }[];
   aboutLicense?: string;
   aboutExpertiseTitle?: string;
@@ -152,6 +159,7 @@ export async function getAboutContent() {
       doc?.aboutInstructorRole,
       `Zakladatel a lektor autoškoly ${site.name}`,
     ),
+    image: pickImage(doc?.aboutImage, "/images/instructor.jpg"),
     highlights: pick(doc?.aboutHighlights, instructorHighlights),
     license: pick(doc?.aboutLicense, instructorLicense),
     expertiseTitle: pick(doc?.aboutExpertiseTitle, "Zkušenosti z oboru"),
@@ -177,6 +185,7 @@ type SiteSettingsDoc = {
   email?: string;
   web?: string;
   bankAccount?: string;
+  logo?: SanityImageSource;
   address?: { street?: string; city?: string };
   hours?: { weekdays?: string; weekend?: string };
   mapQuery?: string;
@@ -193,6 +202,7 @@ export type ResolvedSite = {
   web: string;
   webHref: string;
   bankAccount: string;
+  logoUrl: string | null;
   address: { street: string; city: string };
   hours: { weekdays: string; weekend: string };
   mapQuery: string;
@@ -219,6 +229,7 @@ export async function getSiteSettings(): Promise<ResolvedSite> {
     web,
     webHref: web === site.web ? site.webHref : `https://${web}`,
     bankAccount: pick(doc?.bankAccount, site.bankAccount),
+    logoUrl: urlForImage(doc?.logo)?.url() ?? null,
     address: {
       street: pick(doc?.address?.street, site.address.street),
       city: pick(doc?.address?.city, site.address.city),
@@ -246,6 +257,7 @@ type HomeDoc = {
   heroSubtitle?: string;
   heroCtaLabel?: string;
   heroCtaHref?: string;
+  heroImage?: SanityImageSource;
   stats?: StatItem[];
   whyEyebrow?: string;
   whyTitle?: string;
@@ -255,6 +267,8 @@ type HomeDoc = {
   vehicleTitle?: string;
   vehicleDescription?: string;
   vehicleSpecs?: string[];
+  vehicleImage?: SanityImageSource;
+  vehicleInteriorImage?: SanityImageSource;
   marquee?: string[];
   packagesEyebrow?: string;
   packagesTitle?: string;
@@ -314,6 +328,7 @@ export async function getHomeContent() {
       ),
       ctaLabel: pick(doc?.heroCtaLabel, "Zjistit ceny"),
       ctaHref: pick(doc?.heroCtaHref, "/cenik"),
+      image: pickImage(doc?.heroImage, "/images/hero.jpg"),
     },
     stats: pick(doc?.stats, defaultStats),
     why: {
@@ -333,6 +348,8 @@ export async function getHomeContent() {
         "Výcvikový vůz, který vás bude bavit. Výkon, asistenční systémy a komfort, na který se spolehnete od první jízdy.",
       ),
       specs: pick(doc?.vehicleSpecs, vehicleSpecs),
+      image: pickImage(doc?.vehicleImage, "/images/bmw-x2.jpg"),
+      interiorImage: pickImage(doc?.vehicleInteriorImage, "/images/bmw-x2-interior.jpg"),
     },
     marquee: pick(doc?.marquee, defaultMarquee),
     packages: {
@@ -382,6 +399,7 @@ type ServicesDoc = {
   vehicleTitle?: string;
   vehicleDescription?: string;
   vehicleSpecs?: string[];
+  vehicleImage?: SanityImageSource;
   consultingEyebrow?: string;
   consultingTitle?: string;
   consultingDescription?: string;
@@ -429,6 +447,7 @@ export async function getServicesContent() {
         "Moderní vůz s asistenčními systémy, který vám usnadní začátky a zároveň vás naučí pracovat s technikou, kterou potkáte v praxi.",
       ),
       specs: pick(doc?.vehicleSpecs, vehicleSpecs),
+      image: pickImage(doc?.vehicleImage, "/images/bmw-x2-interior.jpg"),
     },
     consulting: {
       eyebrow: pick(doc?.consultingEyebrow, "Poradenství"),
@@ -464,6 +483,7 @@ type ContactDoc = {
   headerEyebrow?: string;
   headerTitle?: string;
   headerDescription?: string;
+  instructorImage?: SanityImageSource;
   instructorName?: string;
   instructorRole?: string;
   infoSubtext?: string;
@@ -472,6 +492,7 @@ type ContactDoc = {
   showroomEyebrow?: string;
   showroomTitle?: string;
   showroomDescription?: string;
+  showroomImage?: SanityImageSource;
 };
 
 export async function getContactContent() {
@@ -486,6 +507,7 @@ export async function getContactContent() {
         "Zavolejte, napište nebo vyplňte formulář. Ozveme se vám co nejdříve a probereme termín i vhodný balíček.",
       ),
     },
+    instructorImage: pickImage(doc?.instructorImage, "/images/instructor-driving.jpg"),
     instructorName: pick(doc?.instructorName, site.owner),
     instructorRole: pick(doc?.instructorRole, `Zakladatel a lektor autoškoly ${site.name}`),
     infoSubtext: pick(doc?.infoSubtext, "Těšíme se na vás v naší učebně v Liberci."),
@@ -498,6 +520,7 @@ export async function getContactContent() {
         doc?.showroomDescription,
         "Zastavte se u nás v moderní učebně v Doubí. Rádi vám vše ukážeme a probereme termín nástupu.",
       ),
+      image: pickImage(doc?.showroomImage, "/images/ucebna.jpg"),
     },
   };
 }

@@ -20,7 +20,13 @@ const wipeReveal = {
  * BMW showcase: wipe-in reveal, scroll parallax (the two photos drift at
  * different speeds for depth) and a reactbits-style 3D tilt + glare on hover.
  */
-export function VehicleGallery() {
+export function VehicleGallery({
+  exteriorSrc = "/images/bmw-x2.jpg",
+  interiorSrc = "/images/bmw-x2-interior.jpg",
+}: {
+  exteriorSrc?: string;
+  interiorSrc?: string;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion();
 
@@ -43,7 +49,7 @@ export function VehicleGallery() {
       >
         <TiltCard className="rounded-2xl">
           <SmartImage
-            src="/images/bmw-x2.jpg"
+            src={exteriorSrc}
             alt="BMW X2 autoškoly Royal Cars"
             label="BMW X2 exteriér"
             width={880}
@@ -63,7 +69,7 @@ export function VehicleGallery() {
       >
         <TiltCard className="rounded-2xl">
           <SmartImage
-            src="/images/bmw-x2-interior.jpg"
+            src={interiorSrc}
             alt="Červený interiér BMW X2"
             label="BMW X2 interiér"
             width={880}

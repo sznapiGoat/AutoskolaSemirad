@@ -43,6 +43,7 @@ export default async function Home() {
         phoneHref={settings.phoneHref}
         priceFrom={priceFrom}
         nextCourse={settings.nextCourse}
+        image={content.hero.image}
       />
       <Stats items={content.stats} />
 
@@ -83,7 +84,10 @@ export default async function Home() {
       {/* Vehicle showcase */}
       <section className="bg-dark text-white">
         <div className="mx-auto grid max-w-container items-center gap-12 py-20 container-px sm:py-28 lg:grid-cols-2">
-          <VehicleGallery />
+          <VehicleGallery
+            exteriorSrc={content.vehicle.image}
+            interiorSrc={content.vehicle.interiorImage}
+          />
           <div>
             <SectionHeading
               dark

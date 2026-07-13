@@ -13,7 +13,7 @@ export default async function SiteLayout({
   return (
     <MotionProvider>
       <JsonLd data={drivingSchoolJsonLd(settings)} />
-      <Navbar phone={settings.phone} phoneHref={settings.phoneHref} />
+      <Navbar phone={settings.phone} phoneHref={settings.phoneHref} logoUrl={settings.logoUrl} />
       <main>{children}</main>
       <Footer settings={settings} />
       <MobileCallBar phone={settings.phone} phoneHref={settings.phoneHref} />

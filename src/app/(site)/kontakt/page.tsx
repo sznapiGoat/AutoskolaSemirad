@@ -46,7 +46,7 @@ export default async function ContactPage() {
           <Reveal className="space-y-8">
             <div className="relative overflow-hidden rounded-2xl shadow-card">
               <SmartImage
-                src="/images/instructor-driving.jpg"
+                src={content.instructorImage}
                 alt={`${content.instructorName} za volantem`}
                 label="Lektor za volantem"
                 width={900}
@@ -222,7 +222,7 @@ export default async function ContactPage() {
           <div className="mt-10 grid gap-6 lg:grid-cols-2">
             <Reveal className="overflow-hidden rounded-2xl border border-line shadow-card">
               <SmartImage
-                src="/images/ucebna.jpg"
+                src={content.showroom.image}
                 alt="Učebna autoškoly Royal Cars v Liberci"
                 label="Naše učebna"
                 width={880}
