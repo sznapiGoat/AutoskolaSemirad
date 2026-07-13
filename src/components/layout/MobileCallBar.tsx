@@ -2,8 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
 import { Phone, Send } from "lucide-react";
 import { site } from "@/lib/site";
+
+const easeOut = [0.22, 1, 0.36, 1] as const;
 
 /**
  * Persistent call-to-action bar pinned to the bottom of the viewport on
@@ -20,7 +23,12 @@ export function MobileCallBar({
   const onContact = pathname === "/kontakt";
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-white/95 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-[0_-8px_24px_rgba(0,0,0,0.08)] backdrop-blur lg:hidden">
+    <motion.div
+      initial={{ y: 80, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, ease: easeOut, delay: 0.6 }}
+      className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-white/95 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-[0_-8px_24px_rgba(0,0,0,0.08)] backdrop-blur lg:hidden"
+    >
       <div className="mx-auto flex max-w-container gap-3">
         <a
           href={phoneHref}
@@ -39,6 +47,6 @@ export function MobileCallBar({
           </Link>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 }

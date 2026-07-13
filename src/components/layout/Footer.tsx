@@ -3,6 +3,7 @@ import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { nav, site } from "@/lib/site";
 import type { ResolvedSite } from "@/lib/content";
 import { Logo } from "./Logo";
+import { Reveal } from "@/components/ui/Reveal";
 
 export function Footer({ settings = site }: { settings?: ResolvedSite }) {
   const s = settings;
@@ -11,7 +12,7 @@ export function Footer({ settings = site }: { settings?: ResolvedSite }) {
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent to-transparent" />
       {/* extra bottom padding on mobile clears the fixed call bar */}
       <div className="mx-auto max-w-container pb-36 pt-16 container-px lg:pb-16">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+        <Reveal className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-5">
             <Logo dark logoUrl={s.logoUrl} />
             <p className="max-w-xs text-sm leading-relaxed text-white/70">
@@ -87,7 +88,7 @@ export function Footer({ settings = site }: { settings?: ResolvedSite }) {
               </li>
             </ul>
           </div>
-        </div>
+        </Reveal>
 
         <div className="mt-14 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-white/55 sm:flex-row sm:items-center sm:justify-between">
           <span>

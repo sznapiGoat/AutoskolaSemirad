@@ -88,12 +88,14 @@ export default async function PricingPage() {
       {/* Header */}
       <section className="bg-dark pt-32 text-white">
         <div className="mx-auto max-w-container pb-16 container-px">
-          <SectionHeading
-            dark
-            eyebrow={content.header.eyebrow}
-            title={content.header.title}
-            description={content.header.description}
-          />
+          <Reveal>
+            <SectionHeading
+              dark
+              eyebrow={content.header.eyebrow}
+              title={content.header.title}
+              description={content.header.description}
+            />
+          </Reveal>
         </div>
       </section>
 
