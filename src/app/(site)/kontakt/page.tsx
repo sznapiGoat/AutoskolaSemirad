@@ -186,27 +186,88 @@ export default async function ContactPage() {
               </Reveal>
             ))}
           </div>
-          <Reveal className="mt-8 flex flex-col gap-4 sm:flex-row">
-            <a
-              href="/dokumenty/zadost-o-prijeti-k-vyuce.pdf"
-              download
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition-colors hover:border-white/40"
-            >
-              <FileDown className="h-4 w-4 text-accent-light" />
-              Žádost o přijetí k výuce (PDF)
-            </a>
-            <a
-              href="/dokumenty/lekarsky-posudek.pdf"
-              download
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition-colors hover:border-white/40"
-            >
-              <FileDown className="h-4 w-4 text-accent-light" />
-              Posudek o zdravotní způsobilosti (PDF)
-            </a>
-          </Reveal>
           <Reveal className="mt-5 text-sm text-white/60">
             Řidičák na osobní auto můžete začít dělat už v 17 letech (zkoušku
             skládáte nejdříve v den 17. narozenin, do 18 let jezdíte s mentorem).
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Documents */}
+      <section className="bg-dark-card text-white">
+        <div className="mx-auto max-w-container py-16 container-px sm:py-20">
+          <SectionHeading
+            dark
+            eyebrow="Dokumenty"
+            title="Dokumenty ke stažení"
+            description="Stáhněte si oba formuláře ve formátu, který vám vyhovuje."
+          />
+          <div className="mt-10 grid gap-6 sm:grid-cols-2">
+            <Reveal className="rounded-2xl border border-white/10 bg-dark p-7">
+              <h3 className="font-display text-lg font-semibold">
+                Žádost o přijetí k výuce a výcviku
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-white/70">
+                Vyplňte a podepište, přineste s sebou na první hodinu výuky.
+              </p>
+              <div className="mt-5 flex flex-wrap gap-3">
+                <a
+                  href="/dokumenty/zadost-o-prijeti-k-vyuce.pdf"
+                  download
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:border-white/40"
+                >
+                  <FileDown className="h-4 w-4 text-accent-light" />
+                  PDF
+                </a>
+                <a
+                  href="/dokumenty/zadost-o-prijeti-k-vyuce.doc"
+                  download
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:border-white/40"
+                >
+                  <FileDown className="h-4 w-4 text-accent-light" />
+                  DOC
+                </a>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.08} className="rounded-2xl border border-white/10 bg-dark p-7">
+              <h3 className="font-display text-lg font-semibold">
+                Posudek o zdravotní způsobilosti
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-white/70">
+                Nechte si potvrdit u svého praktického lékaře, přineste s sebou na první
+                hodinu výuky.
+              </p>
+              <div className="mt-5 flex flex-wrap gap-3">
+                <a
+                  href="/dokumenty/lekarsky-posudek.pdf"
+                  download
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:border-white/40"
+                >
+                  <FileDown className="h-4 w-4 text-accent-light" />
+                  PDF
+                </a>
+                <a
+                  href="/dokumenty/lekarsky-posudek.docx"
+                  download
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:border-white/40"
+                >
+                  <FileDown className="h-4 w-4 text-accent-light" />
+                  DOCX
+                </a>
+              </div>
+            </Reveal>
+          </div>
+
+          <Reveal delay={0.12} className="mt-6 rounded-2xl border border-accent/25 bg-accent/10 p-6">
+            <p className="text-sm font-semibold text-white">
+              Oba vyplněné a potvrzené dokumenty přineste s sebou na 1. hodinu výuky.
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-white/70">
+              Volejte prosím od pondělí do pátku mezi 7 až 19 hodinou. V nepřítomnosti je
+              možné zanechat dokumenty ve schránce na vratech vedle autobusové zastávky
+              (vpravo od budovy).
+            </p>
           </Reveal>
         </div>
       </section>

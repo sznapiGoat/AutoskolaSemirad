@@ -1,11 +1,11 @@
 # Dokumenty ke stažení
 
-Sem patří PDF soubory, na které odkazuje sekce „Jak se přihlásit" na stránce
-/kontakt. Nahrajte je pod přesně těmito názvy:
+Soubory, na které odkazuje sekce „Dokumenty" na stránce /kontakt.
+Staženo z původního webu sumi-lbc.cz:
 
-- `zadost-o-prijeti-k-vyuce.pdf` — Žádost o přijetí k výuce a výcviku
-  (oficiální tiskopis, k dispozici na webu Ministerstva dopravy).
-- `lekarsky-posudek.pdf` — Posudek o zdravotní způsobilosti k řízení
+- `zadost-o-prijeti-k-vyuce.pdf` / `.doc` — Žádost o přijetí k výuce a výcviku.
+- `lekarsky-posudek.pdf` / `.docx` — Posudek o zdravotní způsobilosti k řízení
   motorových vozidel.
 
-Dokud soubory chybí, odkazy na webu vrátí 404.
+Pokud klient pošle novější verze formulářů, nahraďte soubory pod stejnými
+názvy (přípona podle formátu, který dodá).
