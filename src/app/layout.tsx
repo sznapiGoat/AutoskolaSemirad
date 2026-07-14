@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
+import { draftMode } from "next/headers";
+import { VisualEditing } from "next-sanity";
 import "./globals.css";
 import { site } from "@/lib/site";
 
@@ -53,16 +55,24 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  let isDraft = false;
+  try {
+    isDraft = (await draftMode()).isEnabled;
+  } catch {
+    isDraft = false;
+  }
+
   return (
     <html lang="cs" className={`${display.variable} ${sans.variable}`}>
       <body className="min-h-dvh bg-bg font-sans text-ink antialiased">
         {children}
         <Analytics />
+        {isDraft && <VisualEditing />}
       </body>
     </html>
   );

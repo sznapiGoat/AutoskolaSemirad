@@ -8,6 +8,12 @@ export const projectId =
   process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "placeholder";
 
 /**
+ * Viewer/editor token used only server-side to read draft content for the
+ * live preview. Never exposed to the browser (no NEXT_PUBLIC_ prefix).
+ */
+export const token = process.env.SANITY_API_READ_TOKEN;
+
+/**
  * True once a real Sanity project is configured. Until then the site renders
  * from the static seed content in `src/lib/data.ts` and `src/lib/site.ts`,
  * so nothing breaks before the project exists. `placeholder` keeps the Studio
