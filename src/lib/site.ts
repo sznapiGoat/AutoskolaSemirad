@@ -5,8 +5,8 @@ export const site = {
   phone: "775 444 443",
   phoneHref: "tel:+420775444443",
   email: "info@sumi-lbc.cz",
-  web: "autoskola-semirad.vercel.app",
-  webHref: "https://autoskola-semirad.vercel.app",
+  web: "www.sumi-lbc.cz",
+  webHref: "https://www.sumi-lbc.cz",
   bankAccount: "4174001044/5500",
   logoUrl: null as string | null,
   address: {
