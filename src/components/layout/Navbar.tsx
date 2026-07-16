@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { nav, site } from "@/lib/site";
 import { Logo } from "./Logo";
@@ -51,7 +51,7 @@ export function Navbar({
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-        scrolled
+        scrolled || open
           ? "border-b border-line bg-white/90 shadow-sm backdrop-blur-md"
           : "border-b border-transparent bg-transparent",
       )}
@@ -90,7 +90,7 @@ export function Navbar({
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="flex h-11 w-11 items-center justify-center rounded-full text-ink transition-colors hover:bg-bg-muted lg:hidden"
+          className="flex h-11 w-11 items-center justify-center rounded-full border border-line bg-white text-ink shadow-sm transition-colors hover:bg-bg-muted lg:hidden"
           aria-label={open ? "Zavřít menu" : "Otevřít menu"}
           aria-expanded={open}
         >
@@ -112,9 +112,9 @@ export function Navbar({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 top-[72px] z-40 bg-white lg:hidden"
+            className="fixed inset-0 top-[72px] z-40 overflow-y-auto bg-white lg:hidden"
           >
-            <div className="flex flex-col gap-1 px-5 py-6">
+            <div className="flex flex-col gap-1.5 px-4 py-5">
               {nav.map((item, i) => {
                 const active = pathname === item.href;
                 return (
@@ -127,11 +127,19 @@ export function Navbar({
                     <Link
                       href={item.href}
                       className={cn(
-                        "block border-b border-line py-4 text-2xl font-display font-semibold",
-                        active ? "text-accent" : "text-ink",
+                        "flex items-center justify-between rounded-2xl px-4 py-4 text-xl font-display font-semibold transition-colors",
+                        active
+                          ? "bg-accent/[0.08] text-accent"
+                          : "bg-bg-muted text-ink active:bg-line/60",
                       )}
                     >
                       {item.label}
+                      <ChevronRight
+                        className={cn(
+                          "h-5 w-5 shrink-0",
+                          active ? "text-accent" : "text-ink-muted",
+                        )}
+                      />
                     </Link>
                   </motion.div>
                 );
@@ -143,7 +151,7 @@ export function Navbar({
                 </ButtonLink>
                 <a
                   href={phoneHref}
-                  className="flex items-center justify-center gap-2 text-lg font-semibold text-ink"
+                  className="flex items-center justify-center gap-2 rounded-full border border-ink/15 bg-white py-3 text-lg font-semibold text-ink"
                 >
                   <Phone className="h-5 w-5 text-accent" />
                   {phone}

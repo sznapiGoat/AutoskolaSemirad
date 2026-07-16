@@ -7,15 +7,7 @@ const nextConfig = {
   },
   async redirects() {
     return [
-      // Old-site URLs printed on QR-code stickers. The old pricing page gets
-      // its exact match first; anything else under the old prefix falls back
-      // to the homepage.
-      {
-        source:
-          "/autoskola-liberec-odbornost-praxe-vzdelani-vozidlo/autoskola-liberec-cenik-sluzeb-kurzy-dle-potreby",
-        destination: "/cenik",
-        permanent: true,
-      },
+      // Old-site URLs printed on QR-code stickers all land on the homepage.
       {
         source: "/autoskola-liberec-odbornost-praxe-vzdelani-vozidlo/:path*",
         destination: "/",
