@@ -48,6 +48,7 @@ export function Navbar({
   }, [open]);
 
   return (
+    <>
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
@@ -104,8 +105,12 @@ export function Navbar({
           className="absolute inset-x-0 bottom-0 h-0.5 origin-left bg-accent"
         />
       )}
+    </header>
 
-      <AnimatePresence>
+    {/* Rendered outside <header>: its backdrop-blur makes it the containing
+        block for fixed descendants, which would pin this overlay to the 72px
+        bar instead of the viewport. */}
+    <AnimatePresence>
         {open && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -160,7 +165,7 @@ export function Navbar({
             </div>
           </motion.div>
         )}
-      </AnimatePresence>
-    </header>
+    </AnimatePresence>
+    </>
   );
 }
