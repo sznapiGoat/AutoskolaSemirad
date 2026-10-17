@@ -36,6 +36,14 @@ export function Footer({ settings = site }: { settings?: ResolvedSite }) {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  href="/kondicni-jizdy"
+                  className="text-sm text-white/70 transition-colors hover:text-accent-light"
+                >
+                  Kondiční jízdy
+                </Link>
+              </li>
             </ul>
           </nav>
 

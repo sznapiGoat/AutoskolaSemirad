@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
+import { track } from "@vercel/analytics";
 import { Send } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { serviceOptions } from "@/lib/data";
@@ -54,6 +55,7 @@ export function ContactForm() {
         const data = await res.json().catch(() => null);
         throw new Error(data?.error || "Odeslání se nezdařilo.");
       }
+      track("Poptávka odeslána", { sluzba: values.service || "neuvedeno" });
       toast.success("Děkujeme! Ozveme se vám co nejdříve.");
       reset();
     } catch (err) {

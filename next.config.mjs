@@ -13,6 +13,16 @@ const nextConfig = {
         destination: "/",
         permanent: true,
       },
+      // Other old WordPress pages that Google still lists, so their ranking
+      // carries over instead of ending in a 404.
+      { source: "/semi/autoskola", destination: "/", permanent: true },
+      { source: "/semi/:path*", destination: "/sluzby", permanent: true },
+      { source: "/poradenstvi", destination: "/sluzby", permanent: true },
+      {
+        source: "/wp-content/uploads/:year/:month/Lekarsky-posudek.pdf",
+        destination: "/dokumenty/lekarsky-posudek.pdf",
+        permanent: true,
+      },
     ];
   },
 };

@@ -5,6 +5,7 @@ import { draftMode } from "next/headers";
 import { VisualEditing } from "next-sanity";
 import "./globals.css";
 import { site } from "@/lib/site";
+import { ConversionTracking } from "@/components/layout/ConversionTracking";
 
 const display = Space_Grotesk({
   subsets: ["latin"],
@@ -72,6 +73,7 @@ export default async function RootLayout({
       <body className="min-h-dvh bg-bg font-sans text-ink antialiased">
         {children}
         <Analytics />
+        <ConversionTracking />
         {isDraft && <VisualEditing />}
       </body>
     </html>

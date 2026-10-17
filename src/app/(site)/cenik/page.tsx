@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ArrowRight, Check, Snowflake, GraduationCap, Phone } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ButtonLink } from "@/components/ui/Button";
@@ -225,8 +226,15 @@ export default async function PricingPage() {
               ))}
             </ul>
           </Reveal>
-          <Reveal delay={0.1} className="mt-6 text-sm text-ink-muted">
-            {addOns.note}
+          <Reveal delay={0.1} className="mt-6 space-y-2 text-sm text-ink-muted">
+            <p>{addOns.note}</p>
+            <p>
+              Pro koho jsou kondiční jízdy a jak probíhají, popisujeme na stránce{" "}
+              <Link href="/kondicni-jizdy" className="font-medium text-accent hover:underline">
+                Kondiční jízdy
+              </Link>
+              .
+            </p>
           </Reveal>
         </div>
       </section>
