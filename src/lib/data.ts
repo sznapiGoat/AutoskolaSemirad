@@ -154,7 +154,7 @@ export const instructorTraining = {
     "Připravíme vás na profesi učitele výuky a výcviku v autoškole, od kompletního oprávnění po rozšíření.",
   tiers: [
     { label: "Učitelské oprávnění (celé)", price: "od 30 000 Kč" },
-    { label: "Učitelské oprávnění – praktický výcvik", price: "od 25 000 Kč" },
+    { label: "Učitelské oprávnění: praktický výcvik", price: "od 25 000 Kč" },
     { label: "Rozšíření", price: "od 20 000 Kč" },
   ],
   note: "Více žadatelů najednou: sleva 5 000 Kč.",
@@ -200,7 +200,7 @@ export const instructorLicense = "A, B, C, D, B+E, C+E, D+E";
 
 export const instructorHighlights = [
   { value: "35+", label: "let praxe v oboru" },
-  { value: "A–D+E", label: "rozsah učitelského oprávnění" },
+  { value: "A-D+E", label: "rozsah učitelského oprávnění" },
   { value: "24 let", label: "praxe zkušebního komisaře řidičů" },
 ];
 
@@ -232,7 +232,7 @@ export const instructorEducation: Education[] = [
   },
   {
     school: "Zkušební komisař řidičů",
-    detail: "Kompletní rozsah A–D+E, praxe téměř 24 let",
+    detail: "Kompletní rozsah A-D+E, praxe téměř 24 let",
   },
 ];
 

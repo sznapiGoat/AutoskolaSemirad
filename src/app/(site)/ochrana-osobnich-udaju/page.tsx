@@ -5,7 +5,7 @@ import { getSiteSettings } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Ochrana osobních údajů",
   description:
-    "Zásady zpracování osobních údajů autoškoly Royal Cars Liberec — jaké údaje zpracováváme, proč a jaká máte práva.",
+    "Zásady zpracování osobních údajů autoškoly Royal Cars Liberec: jaké údaje zpracováváme, proč a jaká máte práva.",
   alternates: { canonical: "/ochrana-osobnich-udaju" },
 };
 

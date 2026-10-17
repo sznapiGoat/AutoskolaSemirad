@@ -56,7 +56,7 @@ export async function POST(req: Request) {
       from: FROM,
       to: TO,
       replyTo: email || undefined,
-      subject: `Nová poptávka z webu: ${name} — ${service}`,
+      subject: `Nová poptávka z webu: ${name}, ${service}`,
       text: rows.map(([k, v]) => `${k}: ${v}`).join("\n"),
       html: `<h2 style="font-family:sans-serif">Nová poptávka z webu ${site.name}</h2>
         <table style="font-family:sans-serif;font-size:14px;border-collapse:collapse">

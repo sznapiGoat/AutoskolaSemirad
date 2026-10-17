@@ -107,9 +107,9 @@ export default async function ContactPage() {
                   <Clock className="h-5 w-5" />
                 </span>
                 <span className="text-ink">
-                  Po–Pá: {s.hours.weekdays}
+                  Po-Pá: {s.hours.weekdays}
                   <br />
-                  So–Ne: {s.hours.weekend}
+                  So-Ne: {s.hours.weekend}
                 </span>
               </li>
               <li className="flex items-start gap-4">
@@ -155,7 +155,6 @@ export default async function ContactPage() {
         <div className="mx-auto max-w-container py-16 container-px sm:py-20">
           <SectionHeading
             dark
-            eyebrow="Jak se přihlásit"
             title="Tři kroky k nástupu do kurzu"
             description="K zahájení výcviku potřebujete dva vyplněné dokumenty. Vše ostatní vyřídíme společně na učebně."
           />
@@ -276,7 +275,6 @@ export default async function ContactPage() {
       <section className="bg-bg-muted">
         <div className="mx-auto max-w-container py-16 container-px sm:py-20">
           <SectionHeading
-            eyebrow={content.showroom.eyebrow}
             title={content.showroom.title}
             description={content.showroom.description}
           />

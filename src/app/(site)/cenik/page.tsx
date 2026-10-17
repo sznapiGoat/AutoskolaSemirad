@@ -70,7 +70,7 @@ function PackageCard({ pkg }: { pkg: Package }) {
 }
 
 export const metadata: Metadata = {
-  title: "Ceník autoškoly Liberec — řidičák sk. B od 17 999 Kč",
+  title: "Ceník autoškoly Liberec - řidičák sk. B od 17 999 Kč",
   description:
     "Ceník kurzů autoškoly Royal Cars Liberec: skupina B od 17 999 Kč, VIP balíčky, kurz sk. D, kondiční jízdy a doplňkové služby. Splátky bez navýšení.",
   alternates: { canonical: "/cenik" },
@@ -130,7 +130,6 @@ export default async function PricingPage() {
         <div className="mx-auto max-w-container py-20 container-px sm:py-24">
           <SectionHeading
             dark
-            eyebrow="Další kurzy a školení"
             title="Nejen řidičák pro skupinu B"
             description="Zdokonalovací jízdy i příprava na profesi učitele autoškoly."
           />
@@ -241,7 +240,7 @@ export default async function PricingPage() {
 
       <Faq
         tone="white"
-        eyebrow={content.faq.eyebrow}
+        eyebrow=""
         title={content.faq.title}
         description={content.faq.description}
         items={content.faq.items}

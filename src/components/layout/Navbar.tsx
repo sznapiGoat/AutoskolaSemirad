@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
+import { AnimatePresence, motion, useMotionValueEvent, useScroll, useSpring } from "framer-motion";
 import { Menu, X, Phone, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { nav, site } from "@/lib/site";
@@ -22,19 +22,19 @@ export function Navbar({
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  const { scrollYProgress } = useScroll();
+  const { scrollY, scrollYProgress } = useScroll();
   const progress = useSpring(scrollYProgress, {
     stiffness: 120,
     damping: 30,
     restDelta: 0.001,
   });
 
+  // Flip the solid navbar background past 50px without a raw scroll listener;
+  // the state only changes when the threshold is crossed.
+  useMotionValueEvent(scrollY, "change", (y) => setScrolled(y > 50));
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    setScrolled(scrollY.get() > 50);
+  }, [scrollY]);
 
   useEffect(() => {
     setOpen(false);

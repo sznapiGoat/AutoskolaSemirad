@@ -89,9 +89,9 @@ export function Footer({ settings = site }: { settings?: ResolvedSite }) {
               <li className="flex items-start gap-3">
                 <Clock className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
                 <span>
-                  Po–Pá: {s.hours.weekdays}
+                  Po-Pá: {s.hours.weekdays}
                   <br />
-                  So–Ne: {s.hours.weekend}
+                  So-Ne: {s.hours.weekend}
                 </span>
               </li>
             </ul>

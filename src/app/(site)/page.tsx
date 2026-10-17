@@ -23,12 +23,6 @@ export default async function Home() {
     getSiteSettings(),
   ]);
   const featured = pricing.packages.filter((p) => p.group === "B").slice(1, 4);
-  const priceFrom = Math.min(
-    ...pricing.packages
-      .filter((p) => p.group === "B")
-      .map((p) => parseInt(p.price.replace(/\D/g, ""), 10))
-      .filter((n) => Number.isFinite(n)),
-  ).toLocaleString("cs-CZ");
 
   return (
     <>
@@ -41,8 +35,6 @@ export default async function Home() {
         ctaHref={content.hero.ctaHref}
         phone={settings.phone}
         phoneHref={settings.phoneHref}
-        priceFrom={priceFrom}
-        nextCourse={settings.nextCourse}
         image={content.hero.image}
       />
       <Stats items={content.stats} />
@@ -51,7 +43,6 @@ export default async function Home() {
       <section className="bg-bg">
         <div className="mx-auto max-w-container py-20 container-px sm:py-28">
           <SectionHeading
-            eyebrow={content.why.eyebrow}
             title={content.why.title}
             description={content.why.description}
           />
@@ -91,7 +82,6 @@ export default async function Home() {
           <div>
             <SectionHeading
               dark
-              eyebrow={content.vehicle.eyebrow}
               title={content.vehicle.title}
               description={content.vehicle.description}
             />
@@ -201,14 +191,14 @@ export default async function Home() {
       </section>
 
       <Testimonials
-        eyebrow={content.testimonials.eyebrow}
+        eyebrow=""
         title={content.testimonials.title}
         description={content.testimonials.description}
         items={content.testimonials.items}
       />
 
       <Faq
-        eyebrow={content.faq.eyebrow}
+        eyebrow=""
         title={content.faq.title}
         description={content.faq.description}
       />

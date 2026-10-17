@@ -22,7 +22,7 @@ export function drivingSchoolJsonLd(s: ResolvedSite) {
     telephone: s.phoneHref.replace("tel:", ""),
     email: s.email,
     image: `${site.webHref}/images/hero.jpg`,
-    priceRange: "17 999 Kč – 49 900 Kč",
+    priceRange: "17 999 Kč - 49 900 Kč",
     address: {
       "@type": "PostalAddress",
       streetAddress: s.address.street,

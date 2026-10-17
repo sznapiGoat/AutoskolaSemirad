@@ -10,7 +10,7 @@ import { getServicesContent } from "@/lib/content";
 import { resolveIcon } from "@/lib/icons";
 
 export const metadata: Metadata = {
-  title: "Kurzy a služby — řidičský průkaz sk. B a D v Liberci",
+  title: "Kurzy a služby - řidičský průkaz sk. B a D v Liberci",
   description:
     "Kurzy skupiny B i D, rychlokurzy, kondiční jízdy, vrácení řidičského průkazu a školení řidičů. Výcvik v BMW X2 v Liberci.",
   alternates: { canonical: "/sluzby" },
@@ -82,7 +82,6 @@ export default async function ServicesPage() {
           </Reveal>
           <div>
             <SectionHeading
-              eyebrow={content.vehicle.eyebrow}
               title={content.vehicle.title}
               description={content.vehicle.description}
             />
@@ -132,7 +131,6 @@ export default async function ServicesPage() {
         <div className="mx-auto max-w-container py-20 container-px sm:py-24">
           <SectionHeading
             align="center"
-            eyebrow={content.steps.eyebrow}
             title={content.steps.title}
           />
           <StaggerGroup className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">

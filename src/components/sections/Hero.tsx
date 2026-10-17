@@ -7,7 +7,7 @@ import {
   useReducedMotion,
 } from "framer-motion";
 import { Fragment, useRef } from "react";
-import { Phone, ArrowRight, ShieldCheck, Car, CalendarDays, Tag } from "lucide-react";
+import { Phone, ArrowRight } from "lucide-react";
 import { SmartImage } from "@/components/ui/SmartImage";
 import { ButtonLink } from "@/components/ui/Button";
 import { site } from "@/lib/site";
@@ -72,8 +72,6 @@ type HeroProps = {
   ctaHref?: string;
   phone?: string;
   phoneHref?: string;
-  priceFrom?: string;
-  nextCourse?: string;
   image?: string;
 };
 
@@ -85,8 +83,6 @@ export function Hero({
   ctaHref = "/cenik",
   phone = site.phone,
   phoneHref = site.phoneHref,
-  priceFrom = "17 999",
-  nextCourse = site.nextCourse,
   image = "/images/hero.jpg",
 }: HeroProps = {}) {
   const sectionRef = useRef<HTMLElement>(null);
@@ -101,12 +97,6 @@ export function Hero({
   const contentOpacity = useTransform(scrollYProgress, [0, 0.75], [1, 0.15]);
   const photoY = useTransform(scrollYProgress, [0, 1], [0, 48]);
 
-  const trust = [
-    { icon: Tag, label: `Kurzy sk. B od ${priceFrom} Kč` },
-    { icon: CalendarDays, label: `Nejbližší nástup: ${nextCourse}` },
-    { icon: Car, label: "Výcvik v BMW X2" },
-    { icon: ShieldCheck, label: "Splátky bez navýšení" },
-  ];
   const line1Words = titleLine1.split(" ").length;
 
   return (
@@ -151,7 +141,7 @@ export function Hero({
           <StaggeredWords
             text={titleLine2}
             startIndex={line1Words}
-            wordClassName="bg-gradient-to-r from-accent-light via-accent to-accent-light bg-clip-text text-transparent"
+            wordClassName="text-accent-light"
           />
         </h1>
 
@@ -187,37 +177,8 @@ export function Hero({
           </a>
         </motion.div>
 
-        <motion.ul
-          custom={4}
-          variants={lineVariants}
-          initial="hidden"
-          animate="show"
-          className="mt-12 flex flex-wrap gap-x-7 gap-y-3"
-        >
-          {trust.map((t) => (
-            <li key={t.label} className="flex items-center gap-2.5 text-sm text-white/80">
-              <t.icon className="h-4 w-4 text-accent-light" />
-              {t.label}
-            </li>
-          ))}
-        </motion.ul>
       </motion.div>
 
-      {/* scroll cue */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.8 }}
-        className="absolute bottom-7 left-1/2 hidden -translate-x-1/2 sm:block"
-      >
-        <div className="flex h-10 w-6 items-start justify-center rounded-full border border-white/25 p-1.5">
-          <motion.span
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-            className="h-1.5 w-1.5 rounded-full bg-white/70"
-          />
-        </div>
-      </motion.div>
     </section>
   );
 }

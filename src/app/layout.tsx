@@ -23,7 +23,7 @@ const sans = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(site.webHref),
   title: {
-    default: "Autoškola Liberec — Royal Cars | Řidičák sk. B v BMW X2",
+    default: "Autoškola Liberec Royal Cars | Řidičák sk. B v BMW X2",
     template: "%s | Autoškola Royal Cars Liberec",
   },
   description:
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
         url: "/images/hero.jpg",
         width: 1200,
         height: 630,
-        alt: "Autoškola Royal Cars Liberec — výcvik v BMW X2",
+        alt: "Autoškola Royal Cars Liberec, výcvik v BMW X2",
       },
     ],
   },
